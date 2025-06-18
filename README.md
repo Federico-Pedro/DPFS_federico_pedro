@@ -5,8 +5,8 @@
 **¿Qué productos brindará el sitio?**
 ---
 El sitio es un e-commerce del emprendimiento 'Ratón Blanco'
-Este es un emprendimiento que tiene existencia reaL.
-En el, la artista Mariana Silva confecciona muñecas de tela de diseño y alta calidad.
+Este es un emprendimiento que tiene existencia real.
+En él, la artista Mariana Silva confecciona muñecas de tela de diseño y alta calidad.
 Los productos ofrecidos son piezas únicas, de diseño de autor.
 
 

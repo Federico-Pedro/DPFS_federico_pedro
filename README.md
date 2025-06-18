@@ -36,12 +36,12 @@ Soy casado y tengo dos hijos.
 
 **--- SITIOS DE REFERENCIA ---**
 
-[Sitio de moda] (https://www.dollsmoda.com/)
+[Sitio de moda](https://www.dollsmoda.com/)
 
-[Sitio de diseño] (https://www.almacendecosillas.com/)
+[Sitio de diseño](https://www.almacendecosillas.com/)
 
-[Sitio de muñecos] (https://www.lupitamia.com.ar/)
+[Sitio de muñecos](https://www.lupitamia.com.ar/)
 
-[Sitio de muñecos 2] (https://www.drimydolls.com/)
+[Sitio de muñecos 2](https://www.drimydolls.com/)
 
-[Sitio de diseño] (https://florian.ar/)
+[Sitio de diseño](https://florian.ar/)

@@ -1,0 +1,370 @@
+:root {
+    --raton: rgb(19, 58, 131);
+    --ratonClaro: rgb(25, 80, 180);
+    --gray: rgb(245, 245, 245);
+}
+
+@font-face {
+    font-family: 'Amsterdam';
+    src: url('/fonts/Amsterdam\ Four_ttf\ 400.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Railey';
+    src: url('/fonts/Railey-PersonalUse.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Star';
+    src: url('/fonts/White\ Star\ PersonalUseOnly.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* {
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    
+
+
+}
+
+body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(240, 240, 240);
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.header {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 25px;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.bar-text {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+.header-elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+
+
+}
+
+.header-logo {
+    height: 150px;
+    width: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.main-title {
+    font-size: 50px;
+    font-family: 'Amsterdam';
+    font-weight: 500;
+    color: var(--raton)
+}
+
+.search-bar {
+    
+
+}
+
+.search-input {
+    border-radius: 8px;
+    height: 30px;
+    width: 350px;
+    padding: 5px;
+    border: 1px solid var(--raton)
+}
+
+.search-input:focus{
+    outline: none;
+    background-color: var(--gray);
+    box-shadow: inset 2px 2px 5px var(--raton);
+}
+
+.icons-container {
+    width: 30%;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 40px;
+    /* border: 1px solid red; */
+}
+
+.icons {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: row;
+}
+.icon {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+    
+}
+
+
+/* ------BODY------ */
+
+.main {
+    width: 100vw;
+}
+
+.main-register {
+    display: flex;
+}
+
+.title-container {
+    width: 40vw;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding-bottom: 20px;
+}
+
+.title-container h1 {
+    margin: 25px;
+    font-weight: lighter;
+    font-family: 'Star';
+    font-size: 50px;
+    color: var(--raton)
+
+}
+
+.title-container h3 {
+    margin: 25px;
+    font-weight: lighter;
+    font-family: 'Star';
+    font-size: 30px;
+    color: var(--raton)
+}
+
+.title-container h3:hover{
+    color: var(--ratonClaro)
+} 
+
+
+.title-container button {
+    width: 150px;
+    border: 1px solid var(--raton);
+    color: var(--raton);
+    margin: 30px;
+    border-radius: 8px;
+    height: 30px;
+    font-size: 18px;
+    transition: all 0.5s ease-in-out;
+}
+
+.title-container button:hover{
+    background-color: var(--ratonClaro);
+    color:  #ffffff;
+} 
+
+.form-container {
+    width: 60vw;
+    margin: 25px;
+    padding: 10px;
+    
+}
+
+.form-container .form-subtitle {
+    margin: 15px;
+    font-size: 32px;
+    font-family: 'Railey';
+    font-weight: lighter;
+    color: var(--raton)
+}
+
+.form-container form {
+    padding: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    width: 250px;
+
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 24px;
+    font-family: 'Railey';
+    font-weight: lighter;
+    color: var(--raton)
+
+}
+
+.form-group input {
+    border-radius: 8px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid var(--raton)
+}
+
+.form-group input:focus {
+    outline: none;
+    background-color: var(--gray);
+    box-shadow: inset 2px 2px 5px var(--raton);
+}
+
+form button {
+    margin: 20px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    padding: 5px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: var(--raton);
+    color: #ffffff;
+    font-family: 'Railey';
+    font-size: 32px;
+    font-weight: bold;
+    font-weight: lighter;
+    transition: all 0.5s ease;
+    
+}
+
+form button:hover {
+    background-color: var(--ratonClaro);
+    width: 350px;
+}
+
+
+/* -----FOOTER----- */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+    border-top: 1px solid var(--raton);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
+
+.footer-logo img {
+    height: 60px;
+    width: auto;
+}
+
+.copyright {
+    display: flex;
+    justify-content: end;
+    width: 90vw;
+    
+}
+
+.copyright h4 {
+    color: var(--raton)
+}
+
+.copyright-text {
+    margin-right: 20px;
+}
+
+
+/* ------Queries------ */
+
+
+@media (max-width: 768px) {
+    
+    .head-title{
+        display: none;
+    }
+    
+    * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .header { 
+        margin: 0;
+    }
+
+    .header-bar {
+        width: 110vw;
+    }
+    .search-input{
+        
+    }
+
+    .icons-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        
+    }
+    .icons{
+        margin: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        margin:15px 0;        
+       
+    }
+
+    .icon{
+        margin: 0;
+    }
+
+    .title-container {
+        width: 105vw;
+        padding: 0;
+    }
+
+    footer {
+        padding-top: 50px;
+        
+    }
+}

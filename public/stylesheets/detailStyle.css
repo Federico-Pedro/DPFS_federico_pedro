@@ -1,0 +1,145 @@
+/* ----HERO------ */
+
+.main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+main  {
+    background-color: var(--gray);
+    width: 105vw;
+}
+.presentation-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin: 50px;
+    padding: 25px;
+    background-color: #ffffff;
+}
+
+
+.main-pic {
+
+    height: auto;
+    width: 60vw;
+    padding: 5px;
+    margin-right: 25px;
+    /* border: 1px solid red; */
+}
+
+.main-pic img {
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    font-family: 'Star';
+    font-size: 50px;
+    color: var(--raton);
+    
+    font-weight: lighter;
+    
+}
+
+.description {
+    font-size: 30px;
+    font-family: 'Amatic';
+    font-weight: 500;
+    color: var(--raton);
+    /* padding-right: 25px; */
+    
+}
+
+
+
+.cart-button {
+    margin: 20px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    padding: 5px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: var(--raton);
+    color: #ffffff;
+    font-family: 'Railey';
+    font-size: 32px;
+    font-weight: bold;
+    font-weight: lighter;
+    transition: all 0.5s ease;
+    
+}
+
+.cart-button:hover {
+    background-color: var(--ratonClaro);
+    width: 350px;
+}
+
+.presentation-container h6 {
+    font-size: 16px;
+    color: var(--raton)
+    
+}
+
+
+@media (max-width: 768px) {
+    
+    .head-title{
+        display: none;
+    }
+    
+    * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-bar {
+        width: 110vw;
+    }
+    .search-input{
+        
+    }
+
+    .icons-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .icons{
+        margin: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .categories-container{
+        height: 100%;
+    }
+
+    .category {
+        margin-top: 15px;
+        margin-bottom: 15PX;
+        height: 250px;
+    }
+
+    .offer-cards {
+        display: none;
+    }
+
+    footer {
+        padding-top: 50px;
+        
+    }
+}

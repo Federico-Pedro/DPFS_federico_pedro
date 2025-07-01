@@ -17,3 +17,39 @@ Retrospectiva del sprint 1#
 
 - Concentrarme en lograr el minimal viable product(mvp), no estar todo el tiempo queriendo mejorar, agregar, complejizar el producto.
 
+
+---
+---
+---
+
+
+**Retrospectiva del sprint 2#**
+---
+---
+
+**Seguir haciendo:**
+
+- Pedir feedback sobre estructura y diseño a personas reales 
+
+
+**Mas de:**
+
+-Pensar las cosas en la pizarra antes de codearlas
+-Concentrarme solo en lo que pide el sprint (ya va a haber tiempo para mejoras)
+
+
+**Empezar a hacer:**
+
+-Confiar en mi criterio
+Buscar el mvp
+
+
+**Menos de:**
+
+-Trabajar en el proyecto demasiadas horas sin descanso
+
+
+**Dejar de hacer:**
+
+-Complejizar las cosas mas de lo necesario
+-Repetir código

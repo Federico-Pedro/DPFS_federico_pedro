@@ -1,0 +1,279 @@
+
+
+/* ----HERO------ */
+
+.main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    padding: 25px;
+    background-color: #ffffff;
+    border: 1px solid var(--raton);
+}
+
+.main-container h1 {
+    font-family: 'Star';
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--raton);
+    margin: 20px;
+    align-self: flex-start;
+    /* border: 1px solid red; */
+
+}
+
+.main-container label {
+    align-self: flex-start;
+    justify-self: flex-start;
+    margin: 25px;
+    color: var(--raton);
+    font-size: 18px;
+    font-family: 'Star';
+}
+
+.main-container label input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--ratonClaro);
+    align-self: center;
+    border: var(--ratonClaro);
+}
+
+.main-container label input:hover,
+button:hover,
+.add:hover {
+    cursor: pointer;
+}
+
+.main-container label input:checked {
+    accent-color: var(--raton);
+}
+
+
+.secondary-container {
+    display: flex;
+    border: 2px solid var(--ratonClaro);
+    width: 90vw;
+
+}
+
+.main-pic {
+
+    height: auto;
+    width: 15vw;
+    padding: 5px;
+    margin-right: 25px;
+    /* border: 1px solid red; */
+}
+
+.main-pic img {
+    height: 100%;
+    width: 100%;
+}
+
+.producto {
+    display: flex;
+    width: 60vw;
+    border-right: 2px solid var(--ratonClaro);
+}
+
+.quantity-container {
+    padding: 15px;
+}
+
+.quantity {
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+    
+}
+
+.quantity-number, .add {
+    display: flex;
+}
+
+
+.add h2,
+.quantity h2 {
+    margin: 15px;
+    font-family: 'Star';
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--raton);
+}
+
+.eliminar {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.eliminar h4 {
+    font-weight: lighter;
+    color: var(--raton);
+}
+
+.name-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Railey';
+    font-size: 28px;
+    font-weight: 200;
+    color: var(--raton);
+    margin: 25px;
+}
+
+.name-container h3 {
+    font-family: 'Amatic';
+    font-weight: bold;
+}
+
+.title {
+    font-family: 'Star';
+    font-size: 50px;
+    color: var(--raton);
+    margin: 20px;
+    font-weight: lighter;
+}
+
+
+
+.buttons {
+    display: flex;
+    padding: 15px;
+    align-self: flex-start;
+}
+
+.buttons button {
+    border: none;
+    margin: 20px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    padding: 5px;
+    width: 200px;
+    height: 75px;
+    border-radius: 8px;
+    background-color: var(--raton);
+    color: #ffffff;
+    font-family: 'Railey';
+    font-size: 32px;
+    font-weight: bold;
+    font-weight: lighter;
+    transition: all 0.5s ease;
+
+}
+
+.buttons button:nth-of-type(2) {
+    background-color: var(--gray);
+    color: var(--ratonClaro);
+} 
+
+
+.buttons button:hover {
+    box-shadow: 2px 2px 10px var(--ratonClaro);
+}
+
+
+
+
+.quantity-container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+@media (max-width: 768px) {
+    
+    html {
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    .head-title{
+        display: none;
+    }
+    
+    * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+
+    .header-bar {
+        width: 110vw;
+    }
+   
+
+    .icons-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .icons{
+        margin: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .main-container {
+        border:none;
+        
+        width: 105vw;
+    }
+
+    .main-container h1 {
+        
+        align-self: center;
+    }
+  
+
+    .title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .secondary-container > div{
+        border: none;
+    }
+
+    .producto img {
+        height: 50vh;
+        width: auto;
+        box-shadow: 2px 2px 10px var(--ratonClaro);
+    }
+
+   .quantity,
+   .quantity-number,
+   .add {
+    display: flex;
+    flex-direction: row;
+    border: none;
+   }
+
+   .envoltorio,
+   .buttons {
+    align-self: center;
+   }
+    
+   
+   footer {
+    width: 105vw;
+        padding-top: 50px;
+        
+    }
+}

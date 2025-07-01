@@ -1,0 +1,34 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+    
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
+
+.footer-logo img {
+    height: 60px;
+    width: auto;
+}
+
+.copyright {
+    display: flex;
+    justify-content: end;
+    width: 90vw;
+    
+}
+
+.copyright h4 {
+    color: var(--raton)
+}
+
+.copyright-text {
+    margin-right: 20px;
+}

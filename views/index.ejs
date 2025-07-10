@@ -1,85 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
-<%- include('partials/head.ejs')  %>
+<%- include('partials/head.ejs') %>
 
-<body>
+    <body>
 
-    <!-- HEADER -->
-   <%- include('partials/header')  %>
+        <!-- HEADER -->
+        <%- include('partials/header') %>
 
-    <!-- HEROE -->
-    <main class="main">
-        <div class="presentation-container">
-            <div class="main-pic">
-                <video autoplay loop muted playsinline>
-                    <source src="/images/raton_blanco/video.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="presentation">
-                <h1 class="title">Bienvenidos a Ratón blanco</h1>
-                <h4 class="description">En este atelier la artista Mariana Silva confecciona muñecas de tela de diseño y
-                    alta calidad.Los productos ofrecidos son piezas únicas, de diseño de autor. Para aquellas personas
-                    con un alma sensible que buscan reconectar con su infancia o tal vez regalar algo único, que sale de
-                    lo común.
-                </h4>
-            </div>
-        </div>
-        <div class="categories-container">
-
-            <div class="category">
-
-                <a href="products"><img class="img-category" src="/images/Munieca.png" /></a>
-
-            </div>
-
-            <div class="category">
-
-                <a href="products"></a><img class="img-category" src="/images/Oveja.png" /></a>
-            </div>
-
-            <div class="category">
-
-                <a href="products"></a><img class="img-category" src="/images/Animal.png" /></a>
-
-            </div>
-        </div>
-        <div class="offer-container">
-            <div class="offer-title">
-                <h2 class="title">Ofertas y promociones</h2>
-            </div>
-            <div class="offer-cards">
-                <div class="card">
-                    <img class="card-image" src="/images/Munieca.png" />
-                    <h2 class="title">Titulo</h2>
-                    <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                        mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-                    <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                        mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <div class="main-pic">
+                        <video autoplay loop muted playsinline>
+                            <source src="/images/raton_blanco/video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="presentation">
+                        <h1 class="title">Bienvenidos a Ratón blanco</h1>
+                        <h4 class="description">En este atelier la artista Mariana Silva confecciona muñecas de tela de
+                            diseño y
+                            alta calidad.Los productos ofrecidos son piezas únicas, de diseño de autor. Para aquellas
+                            personas
+                            con un alma sensible que buscan reconectar con su infancia o tal vez regalar algo único, que
+                            sale de
+                            lo común.
+                        </h4>
+                    </div>
                 </div>
-                <div class="card">
-                    <img class="card-image" src="/images/Munieca.png" />
-                    <h2 class="title">Titulo</h2>
-                    <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                        mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-                    <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                        mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-                </div>
-                <div class="card">
-                    <img class="card-image" src="/images/Munieca.png" />
-                    <h2 class="title">Titulo</h2>
-                    <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                        mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-                    <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                        mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-                </div>
-            </div>
-        </div>
-    </main>
+                <div class="products">
+                    <h1 class="product-title">Productos</h1>
+                    <div class="categories-container">
 
-    <!-- FOOTER -->
-    <%- include('partials/footer')  %>
+                        <div class="category">
 
-</body>
+                            <a href="products/muñecas"><img class="img-category" src="/images/Munieca.png" /></a>
+
+                        </div>
+
+                        <div class="category">
+
+                            <a href="products/ovejas"><img class="img-category" src="/images/Oveja.png" /></a>
+                        </div>
+
+                        <div class="category">
+
+                            <a href="products/animales"><img class="img-category" src="/images/Animal.png" /></a>
+
+                        </div>
+                    </div>
+                    <div class="offer-container">
+                        <div class="offer-title">
+                            <h2 class="title">Ofertas y promociones</h2>
+                        </div>
+                        <div class="offer-cards">
+                            <div class="card">
+                                <img class="card-image" src="/images/Munieca.png" />
+                                <h2 class="title">Titulo</h2>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Vitae id sint,
+                                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Vitae id sint,
+                                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                            </div>
+                            <div class="card">
+                                <img class="card-image" src="/images/Munieca.png" />
+                                <h2 class="title">Titulo</h2>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Vitae id sint,
+                                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Vitae id sint,
+                                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                            </div>
+                            <div class="card">
+                                <img class="card-image" src="/images/Munieca.png" />
+                                <h2 class="title">Titulo</h2>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Vitae id sint,
+                                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                    Vitae id sint,
+                                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- FOOTER -->
+            <%- include('partials/footer') %>
+
+    </body>
 
 </html>

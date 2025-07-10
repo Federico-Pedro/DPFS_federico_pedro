@@ -22,7 +22,7 @@
                 <div class="form-container">
                     <h3 class="form-subtitle">Ingresa los datos del producto</h3>
 
-                    <form class="form" id="miFormulario" action="#" method="POST">
+                    <form class="form" id="miFormulario" action="/store" method="POST">
                         <div class="inputs">
 
                             <div class="form-group">
@@ -37,9 +37,14 @@
                                     placeholder="Descripción del producto" required></textarea>
                             </div>
                             <div class="form-group">
+                                <label for="material">Material del producto:</label>
+                                <textarea type="text" id="description" name="material" rows="15" cols="100"
+                                    placeholder="Material del producto" required></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="category">Categoría del producto:</label>
                                 <select name="category" id="category" required>
-                                    <option value="muniecas">Muñecas</option>
+                                    <option value="muñecas">Muñecas</option>
                                     <option value="ovejas">Ovejas</option>
                                     <option value="animales">Animales</option>
                                 </select>
@@ -50,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="image">Imagen del producto:</label>
-                                <input type="file" id="file" name="image" accept="image/*" required />
+                                <input type="file" id="file" name="image" accept="image/*"/>
                             </div>
                         </div>
 

@@ -154,8 +154,8 @@ form button:hover {
     .header-bar {
         width: 110vw;
     }
-    .search-input{
-        
+   .search-input{
+     width: 350px;   
     }
 
     .icons-container {

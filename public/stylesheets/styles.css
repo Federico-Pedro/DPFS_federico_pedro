@@ -42,10 +42,10 @@
 }
 
 .description {
-    font-size: 30px;
+    font-size: 35px;
     font-family: 'Amatic';
     line-height: 40px;
-    font-weight: 400;
+    font-weight: 500;
     
 }
 
@@ -78,6 +78,19 @@
     object-position: center;
 
 }
+.products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-title {
+        font-size: 50px;
+        font-family: 'Amatic';
+        color: var(--raton);
+        margin: 0 0 50px 0;
+    }
 
 .offer-container {
     width: 100vw;
@@ -158,7 +171,7 @@
         width: 110vw;
     }
     .search-input{
-        
+     width: 350px;   
     }
 
     .icons-container {
@@ -181,12 +194,14 @@
     .description {
         font-size: 25px;
         text-align: center;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
 
     .categories-container{
         height: 100%;
     }
 
+    
     .category {
         margin-top: 15px;
         margin-bottom: 15PX;

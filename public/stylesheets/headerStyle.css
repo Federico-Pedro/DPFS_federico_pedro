@@ -111,7 +111,7 @@ body {
 .search-input {
     border-radius: 8px;
     height: 30px;
-    width: 350px;
+    width: 20vw;
     padding: 5px;
     border: 1px solid var(--raton)
 }

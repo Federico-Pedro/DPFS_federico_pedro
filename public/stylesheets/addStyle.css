@@ -2,7 +2,7 @@
 
 .main {
     width: 100vw;
-    
+
 }
 
 .main-register {
@@ -25,7 +25,6 @@
     font-family: 'Star';
     font-size: 50px;
     color: var(--raton)
-
 }
 
 .title-container h3 {
@@ -36,9 +35,9 @@
     color: var(--raton)
 }
 
-.title-container h3:hover{
+.title-container h3:hover {
     color: var(--ratonClaro)
-} 
+}
 
 
 .title-container button {
@@ -52,16 +51,16 @@
     transition: all 0.5s ease-in-out;
 }
 
-.title-container button:hover{
+.title-container button:hover {
     background-color: var(--ratonClaro);
-    color:  #ffffff;
-} 
+    color: #ffffff;
+}
 
 .form-container {
     width: 60vw;
     padding: 10px;
     background-color: var(--gray);
-    
+
 }
 
 .form-container .form-subtitle {
@@ -90,14 +89,14 @@
     font-family: 'Amatic';
     font-weight: lighter;
     color: var(--raton)
-
 }
 
 .form-group input {
     border-radius: 8px;
     height: 30px;
     padding: 5px;
-    border: 1px solid var(--raton)
+    border: 1px solid var(--raton);
+    color: var(--raton);
 }
 
 .form-group input:focus {
@@ -107,16 +106,35 @@
 }
 
 #category {
-    height: 25px;
+    height: 30px;
+    font-size: 18px;
     border-radius: 10px;
     border: 1px solid var(--raton);
     background-color: #ffffff;
-    color: #2b2b2b;
+    color: var(--raton);
 }
 
 #category:active {
     border-radius: 10px;
     border: 1px solid var(--raton);
+}
+
+#category:focus {
+    outline: none;
+}
+
+#description {
+    padding: 5px;
+    border: 1px solid var(--raton);
+    border-radius: 10px;
+    transition: all 1s ease;
+    color: var(--raton);
+}
+
+#description:focus {
+    outline: none;
+    border: 1px solid var(--raton);
+    box-shadow: inset 2px 2px 5px var(--raton);
 }
 
 form button {
@@ -133,7 +151,7 @@ form button {
     font-weight: bold;
     font-weight: lighter;
     transition: all 0.5s ease;
-    
+
 }
 
 form button:hover {
@@ -152,45 +170,47 @@ form button:hover {
 
 
 @media (max-width: 768px) {
-    
-    .head-title{
+
+    .head-title {
         display: none;
     }
-    
+
     * {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-    
-    .header { 
+
+    .header {
         margin: 0;
     }
 
     .header-bar {
         width: 110vw;
     }
-    .search-input{
-        
+
+    .search-input {
+        width: 350px;
     }
 
     .icons-container {
         display: flex;
         flex-direction: column;
         margin: 0;
-        
+
     }
-    .icons{
+
+    .icons {
         margin: 20px;
         width: 50vw;
         display: flex;
         flex-direction: row;
-        margin:15px 0;        
-       
+        margin: 15px 0;
+
     }
 
-    .icon{
+    .icon {
         margin: 0;
     }
 
@@ -205,6 +225,6 @@ form button:hover {
 
     footer {
         padding-top: 50px;
-        
+
     }
 }

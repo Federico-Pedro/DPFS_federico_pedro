@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
+
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <h1 class="title">
+                        <%= title %>
+                    </h1>
+
+                    <div class="presentation">
+                        <a href="/">Home</a>
+                        <a href="/create">Cargar un producto</a>
+                       
+
+                    </div>
+
+            </main>
+
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

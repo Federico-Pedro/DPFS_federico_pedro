@@ -17,64 +17,21 @@
                 </video>
             </div>
         </div>
-        <h1 class="title">Nombre de la categoría de los productos seleccionados</h1>
+        <h1 class="title"><%= title %></h1>
+        <a href="/" class="back"><h6>< Back </h6></a>
         <div class="grid-container">
 
-            <a href="detail">
+                       
+            <% products.forEach(product => { %>
+            <a href="/detail/<%= product.id %>">
             <div class="card">
-                <img class="card-image" src="/images/Animal.png" />
-                <h2 class="title">Animal de poder</h2>
-                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
+                <img class="card-image" src=<%= product.img %> />
+                <h2 class="title"><%= product.name %></h2>
+                <h3 class="price">$ <%= product.price %></h3>
+                <p class="card-description"><%= product.description %></p>
             </div>
             </a>
-
-            <a href="detail">
-            <div class="card">
-                <img class="card-image" src="/images/Animal.png" />
-                <h2 class="title">Animal de poder</h2>
-                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-            </div>
-            </a>
-
-            <a href="detail">
-            <div class="card">
-                <img class="card-image" src="/images/Animal.png" />
-                <h2 class="title">Animal de poder</h2>
-                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-            </div>
-            </a>
-
-            <a href="detail">
-            <div class="card">
-                <img class="card-image" src="/images/Animal.png" />
-                <h2 class="title">Animal de poder</h2>
-                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-            </div>
-            </a>
-
-            <a href="detail">
-            <div class="card">
-                <img class="card-image" src="/images/Animal.png" />
-                <h2 class="title">Animal de poder</h2>
-                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-            </div>
-            </a>
-
-            <a href="detail">
-            <div class="card">
-                <img class="card-image" src="/images/Animal.png" />
-                <h2 class="title">Animal de poder</h2>
-                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae id sint,
-                    mollitia accusamus quia iusto impedit ex voluptates nemo.</p>
-            </div>
-            </a>
-
-            
+           <% }); %>
         </div>
 
 

@@ -53,3 +53,33 @@ Buscar el mvp
 
 -Complejizar las cosas mas de lo necesario
 -Repetir código
+
+
+**Retrospectiva del sprint 3#**
+---
+---
+
+**Seguir haciendo:**
+
+- Aprovechar mi formación artística para darle la coherencia estética al sitio 
+
+
+**Mas de:**
+
+-Googlear
+-Entender QUÉ es lo que está haciendo cada parte del código
+
+
+**Empezar a hacer:**
+
+-Buscar mas orden y limpieza en las páginas de estilos
+
+
+**Menos de:**
+
+-Adelantarme en el proceso mas de lo que pide el sprint
+
+
+**Dejar de hacer:**
+
+-Querer terminar el proyecto para verlo fucnionando

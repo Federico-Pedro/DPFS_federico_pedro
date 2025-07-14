@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include('../partials/head')  %>
+<%- include('../partials/head') %>
 
-<body>
+    <body>
 
-    <!-- HEADER -->
-    <%- include('../partials/header')  %>
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
 
-    <!-- HEROE -->
-    <main class="main">
-        <div class="presentation-container">
-            <div class="main-pic">
-                <img src="<%= product.img %>" alt="">
-            </div>
-            <div class="presentation">
-                <a class="product-button" href= '/edit/<%= product.id %>'>Editar</a>
-                <a class="product-button" href= '/delete/<%= product.id %>' onclick="return confirm('¿Seguro que querés eliminar este producto?')">Eliminar</a>
-                <h1 class="title"><%= product.name %></h1>
-                <h4 class="description"><%= product.description %></h4>
-                <h4 class="description"><%= product.material %></h4>
-                <h3 class="price">$ <%= product.price %></h3>
-                <button class="cart-button">Agregar al carrito</button>
-                <a href="/products/<%= product.category %>"><h6>< Back </h6></a>
-            </div>
-        </div>
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <div class="main-pic">
+                        <img src="<%= product.img %>" alt="">
+                    </div>
+                    <div class="presentation">
+                        <div class="admin-buttons">
+                            <a class="product-button" href='/edit/<%= product.id %>'>Editar</a>
+                            <a class="product-button" href='/delete/<%= product.id %>'
+                                onclick="return confirm('¿Seguro que querés eliminar este producto?')">Eliminar</a>
+                        </div>
+                        <h1 class="title">
+                            <%= product.name %>
+                        </h1>
+                        <h4 class="description">
+                            <%= product.description %>
+                        </h4>
+                        <h4 class="description">
+                            <%= product.material %>
+                        </h4>
+                        <h3 class="price">$ <%= product.price %>
+                        </h3>
+                        <button class="cart-button">Agregar al carrito</button>
+                        <a href="/products/<%= product.category %>">
+                            <h6>
+                                < Back </h6>
+                        </a>
+                    </div>
+                </div>
 
-    </main>
+            </main>
 
-    <!-- FOOTER -->
-    <%- include('../partials/footer')  %>
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
 
-</body>
+    </body>
 
 </html>

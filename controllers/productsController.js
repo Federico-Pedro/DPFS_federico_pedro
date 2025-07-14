@@ -115,11 +115,11 @@ let productsController = {
     },
 
     deleted: function (req, res) {
-       
+               
     return res.render('products/deleted', {
         title: 'El producto ha sido eliminado con éxito',
         style: 'deleteStyle.css',
-        
+    
     });
 }
     }

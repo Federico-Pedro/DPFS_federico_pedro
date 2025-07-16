@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
+
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <h1 class="title">
+                        <%= title %>
+                    </h1>
+
+                    <div class="admin-buttons">
+
+                            <form method="GET" action="/">
+                                <button type="submit">Home</button>
+                            </form>
+                            
+                        </div>
+
+            </main>
+
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

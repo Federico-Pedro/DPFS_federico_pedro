@@ -18,32 +18,30 @@ h1 {
     color: var(--raton);
 }
 
-.presentation {
+.admin-buttons {
     display: flex;
+    
 }
-.presentation a {
+.admin-buttons button {
+    border: none;
+    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    margin: 20px;
-    margin-bottom: 0;
-    margin-top: 30px;
-    padding: 5px;
-    width: 250px;
-    height: 75px;
+    padding: 8px;
+    width:200px;
+    height: 55px;
     border-radius: 8px;
     background-color: var(--raton);
     color: #ffffff;
     font-family: 'Railey';
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     font-weight: lighter;
     transition: all 0.5s ease;
-
 }
 
-.presentation a:hover {
+.admin-buttons button:hover {
     background-color: var(--gray);
     color: var(--raton)
 }

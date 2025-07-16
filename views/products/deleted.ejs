@@ -15,12 +15,15 @@
                         <%= title %>
                     </h1>
 
-                    <div class="presentation">
-                        <a href="/">Home</a>
-                        <a href="/create">Cargar un producto</a>
-                
-                    </div>
+                    <div class="admin-buttons">
 
+                    <form method="GET" action="/">
+                        <button type="submit">Home</button>
+                    </form>
+                    <form method="GET" action="/create">
+                        <button type="submit">Cargar un producto</button>
+                    </form>
+                </div>
             </main>
 
             <!-- FOOTER -->

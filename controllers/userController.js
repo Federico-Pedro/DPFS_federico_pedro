@@ -16,7 +16,7 @@ let userController = {
         return res.render('users/login', { title: 'Ratón Blanco', style: 'loginStyle.css' });
     },
     storeUser: function (req, res) {
-        const products = JSON.parse(fs.readFileSync(usersPath, 'utf-8'));
+        const users = JSON.parse(fs.readFileSync(usersPath, 'utf-8'));
 
         const data = req.body;
         const newUser = {
@@ -33,6 +33,19 @@ let userController = {
         fs.writeFileSync(usersPath, JSON.stringify(users, null, 2), 'utf-8');
 
         return res.redirect('/')
+    },
+
+    admin: function (req, res){
+        const users = JSON.parse(fs.readFileSync(usersPath, 'utf-8'));
+        
+        
+        const admin = users.filter(u => u.type === "admin"); 
+        console.log(admin.name)
+        return res.render('users/admin', {
+            title: "Bienvenido " + admin[0].name,
+            style: "admin.css",
+            
+        })
     }
 }
 

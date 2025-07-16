@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
+
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <h1 class="title">
+                        <%= title %>
+                    </h1>
+
+                    <div class="presentation">
+                        
+
+                        <div class="admin-buttons">
+
+                            <form method="GET" action="/">
+                                <button type="submit">Home</button>
+                            </form>
+                            <form method="GET" action="/create">
+                                <button type="submit">Cargar un producto</button>
+                            </form>
+                        </div>
+                    </div>
+
+            </main>
+
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

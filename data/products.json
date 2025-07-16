@@ -4,7 +4,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/002.jpeg",
+        "img": "002.jpeg",
         "category": "muñecas",
         "price": 45600
     },
@@ -12,7 +12,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/001.jpeg",
+        "img": "001.jpeg",
         "category": "animales",
         "price": 45600
     },
@@ -21,7 +21,7 @@
         "name": "Marcela",
         "description": "Marcela despierta tu lado mas tierno. Una muñeca para conectar cone se nucleo sensible, con ese niño interior que todos tenemos dentro y dejarlo salir a jugar",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/003.jpeg",
+        "img": "003.jpeg",
         "category": "muñecas",
         "price": 45600
     },
@@ -30,7 +30,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/004.jpeg",
+        "img": "004.jpeg",
         "category": "animales",
         "price": 45600
     },
@@ -39,7 +39,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/005.jpeg",
+        "img": "005.jpeg",
         "category": "ovejas",
         "price": 45600
     },
@@ -48,7 +48,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/006.jpeg",
+        "img": "006.jpeg",
         "category": "muñecas",
         "price": 45600
     },
@@ -57,7 +57,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/007.jpeg",
+        "img": "007.jpeg",
         "category": "muñecas",
         "price": 45600
     },
@@ -66,7 +66,7 @@
         "name": "Raquel",
         "description": "Raquel es un totem. Es una muñeca de apego que te va a guiar en los momentos difíciles, como una brújula en un mar agitado y oscuro",
         "material": "Confeccionada en liencillo de algodón de alta calidad. Lanas naturales. Pintura para tela. Pasamanería vintage y de diseño",
-        "img": "/images/db_images/008.jpeg",
+        "img": "008.jpeg",
         "category": "muñecas",
         "price": 45600
     }

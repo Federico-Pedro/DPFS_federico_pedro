@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include('../partials/head')  %>
+<%- include('../partials/head') %>
 
-<body>
+    <body>
 
-    <!-- HEADER -->
-    <%- include('../partials/header')  %>
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
 
-    <!-- HEROE -->
-    <main class="main">
-        <div class="presentation-container">
-            <div class="main-pic">
-                <video autoplay loop muted playsinline>
-                    <source src="/images/raton_blanco/video.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-        <h1 class="title"><%= title %></h1>
-        <a href="/" class="back"><h6>< Back </h6></a>
-        <div class="grid-container">
-
-                       
-            <% products.forEach(product => { %>
-            <a href="/detail/<%= product.id %>">
-            <div class="card">
-                <img class="card-image" src=<%= product.img %> />
-                <h2 class="title"><%= product.name %></h2>
-                <h3 class="price">$ <%= product.price %></h3>
-                <p class="card-description"><%= product.description %></p>
-            </div>
-            </a>
-           <% }); %>
-        </div>
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <div class="main-pic">
+                        <video autoplay loop muted playsinline>
+                            <source src="/images/raton_blanco/video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <h1 class="title">
+                    <%= title %>
+                </h1>
+                <a href="/" class="back">
+                    <h6>
+                        < Back </h6>
+                </a>
+                <div class="grid-container">
 
 
+                    <% products.forEach(product=> { %>
+                        <a href="/detail/<%= product.id %>">
 
-    </main>
+                            <div class="card">
 
-    <!-- FOOTER -->
-    <%- include('../partials/footer')  %>
+                                <img class="card-image" src="/images/db_images/<%= product.img %>" />
+                                <h2 class="title">
+                                    <%= product.name %>
+                                </h2>
+                                <h3 class="price">$ <%= product.price %>
+                                </h3>
+                                <p class="card-description">
+                                    <%= product.description %>
+                                </p>
+                                <div class="admin-buttons">
 
-</body>
+                                    <form method="GET" action="/edit/<%= product.id %>">
+                                        <button type="submit">Editar</button>
+                                    </form>
+                                    <form method="POST" action="/delete/<%= product.id %>">
+                                        <button type="submit"
+                                            onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </a>
+                        <% }); %>
+                </div>
+
+
+
+            </main>
+
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
+
+    </body>
 
 </html>

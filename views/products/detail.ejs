@@ -12,14 +12,9 @@
             <main class="main">
                 <div class="presentation-container">
                     <div class="main-pic">
-                        <img src="<%= product.img %>" alt="">
+                        <img src="/images/db_images/<%= product.img %>" alt="">
                     </div>
                     <div class="presentation">
-                        <div class="admin-buttons">
-                            <a class="product-button" href='/edit/<%= product.id %>'>Editar</a>
-                            <a class="product-button" href='/delete/<%= product.id %>'
-                                onclick="return confirm('¿Seguro que querés eliminar este producto?')">Eliminar</a>
-                        </div>
                         <h1 class="title">
                             <%= product.name %>
                         </h1>

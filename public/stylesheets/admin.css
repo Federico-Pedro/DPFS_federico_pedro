@@ -1,0 +1,44 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.title {
+    font-family: 'Amsterdam';
+    font-size: 50px;
+    font-weight: lighter;
+    color: var(--raton); 
+    margin: 10px;
+}
+.admin-buttons {
+    display: flex;
+}
+
+.admin-buttons button{
+    border: none;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    width: 200px;
+    height: 55px;
+    border-radius: 8px;
+    background-color: var(--raton);
+    color: #ffffff;
+    font-family: 'Railey';
+    font-size: 24px;
+    font-weight: bold;
+    font-weight: lighter;
+    transition: all 0.5s ease;
+}
+
+.admin-buttons button:hover {
+    box-shadow: 2px 2px 10px var(--ratonClaro);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}

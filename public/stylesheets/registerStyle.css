@@ -106,6 +106,16 @@
     box-shadow: inset 2px 2px 5px var(--raton);
 }
 
+.validate {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+
+#file {
+    border: none;
+}
+
 form button {
     margin: 20px;
     margin-bottom: 0;

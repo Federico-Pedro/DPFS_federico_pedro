@@ -3,73 +3,88 @@
 
 <%- include('../partials/head') %>
 
-<body>
+    <body>
 
-    <!-- HEADER -->
-    <%- include('../partials/header') %>
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
 
-    <!-- HEROE -->
-    <main class="main-register">
-        <div class="title-container">
-            <div>
-                <h1 class="title">Registrate</h1>
-                <a href="login"><h3 class="login">Log in</h3></a>
-            </div>
-            <a href="index">
-                <button class="back"> Volver </button>
-            </a>
-        </div>
-
-        <div class="form-container">
-            <h3 class="form-subtitle">Completa tu informacion personal</h3>
-
-            <form class="form" id="miFormulario" action="/storeUser" method="POST">
-                <div class="inputs">
-
-                    <div class="form-group">
-                        <label for="email">
-                            Email:
-                        </label>
-                        <input type="email" id="email" name="email" placeholder="Ingresá tu email">
+            <!-- HEROE -->
+            <main class="main-register">
+                <div class="title-container">
+                    <div>
+                        <h1 class="title">Registrate</h1>
+                        <a href="login">
+                            <h3 class="login">Log in</h3>
+                        </a>
                     </div>
-
-                    <div class="form-group">
-                        <label for="password">
-                            Contraseña:
-                        </label>
-                        <input type="password" id="password" name="password" placeholder="Ingresá una contraseña">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">
-                            Repetir contraseña:
-                        </label>
-                        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repetí la contraseña">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">
-                            Nombre:
-                        </label>
-                        <input type="text" id="name" name="name" placeholder="Ingresa tu nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">
-                            Apellido:
-                        </label>
-                        <input type="text" id="lastName" name="lastName" placeholder="Ingresa tu apellido">
-                    </div>
+                    <a href="index">
+                        <button class="back"> Volver </button>
+                    </a>
                 </div>
 
-                <button type="submit">Registrarse</button>
-            </form>
-        </div>
+                <div class="form-container">
+                    <h3 class="form-subtitle">Completa tu informacion personal</h3>
 
-    </main>
+                    <form class="form" id="form" action="/storeUser" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="inputs">
 
-    <!-- FOOTER -->
-    <%- include('../partials/footer') %>
+                            <div class="form-group">
+                                <label for="email">
+                                    Email:
+                                </label>
+                                <input type="email" id="email" name="email" value="<%= oldData?.email || '' %>" placeholder="Ingresá tu email">
+                                <span class="validate" id="email-message"></span>
+                            </div>
 
-</body>
+                            <div class="form-group">
+                                <label for="password">
+                                    Contraseña:
+                                </label>
+                                <input type="password" id="password" name="password"
+                                    placeholder="Ingresá una contraseña">
+                                    <span class="validate" id="passwordMessage"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">
+                                    Repetir contraseña:
+                                </label>
+                                <input type="password" id="repeatPassword" name="repeatPassword"
+                                    placeholder="Repetí la contraseña">
+                                <span class="validate" id="repeatMessage"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">
+                                    Nombre:
+                                </label>
+                                <input type="text" id="name" name="name" value="<%= oldData?.name || '' %>" placeholder="Ingresa tu nombre">
+                                <span class="validate" id="name-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">
+                                    Apellido:
+                                </label>
+                                <input type="text" id="lastName" name="lastName" value="<%= oldData?.lastName || '' %>" placeholder="Ingresa tu apellido">
+                                <span class="validate" id="lastName-message"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Imagen de perfil:</label>
+                                <input type="file" id="file" name="image" accept="image/*" />
+                                <span class="validate" id="img-message"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit">Registrarse</button>
+                    </form>
+                </div>
+
+            </main>
+            <script src="/javascripts/formValidation.js"></script>
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
+
+    </body>
 
 
 </html>

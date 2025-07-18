@@ -16,6 +16,7 @@ let productsController = {
 
         return res.render('products/products',
             {
+                black: '10% off oferta lanzamiento!!',
                 title: categoria,
                 products: productosFiltrados,
                 style: 'productStyle.css'
@@ -32,6 +33,7 @@ let productsController = {
 
             return res.render('products/detail',
                 {
+                    black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
                     product: producto,
                     style: 'detailStyle.css'
@@ -46,6 +48,7 @@ let productsController = {
     create: function (req, res) {
         return res.render('products/addProduct',
             {
+                black: '10% off oferta lanzamiento!!',
                 title: 'Ratón Blanco',
                 style: 'addStyle.css'
 
@@ -59,6 +62,7 @@ let productsController = {
         console.log(data);
         
         const newProduct = {
+            black: '10% off oferta lanzamiento!!',
             id: products.length ? products[products.length - 1].id + 1 : 1,
             name: data.name,
             description: data.description,
@@ -82,6 +86,7 @@ let productsController = {
 
             return res.render('products/editProduct',
                 {
+                    black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
                     product: producto,
                     style: 'addStyle.css'
@@ -95,8 +100,7 @@ let productsController = {
     update: function (req, res) {
         const id = Number(req.params.id);
         const data = req.body;
-        
-        
+              
 
             let products = getProducts();
             
@@ -108,7 +112,7 @@ let productsController = {
                 name: data.name,
                 description: data.description,
                 material: data.material,
-                img: req.file ? data.filename : products[productIndex].img,
+                img: req.file ? req.filename : products[productIndex].img,
                 category: data.category,
                 price: Number(data.price)
         };
@@ -144,6 +148,7 @@ let productsController = {
     deleted: function (req, res) {
 
         return res.render('products/deleted', {
+            black: '10% off oferta lanzamiento!!',
             title: 'El producto ha sido eliminado con éxito',
             style: 'deleteStyle.css',
 
@@ -153,6 +158,7 @@ let productsController = {
     notFound: function (req, res) {
         
         return res.render('products/notFound', {
+            black: '10% off oferta lanzamiento!!',
             title: 'Producto no encontrado',
             style: 'deleteStyle.css',
 
@@ -162,6 +168,7 @@ let productsController = {
     success: function (req, res) {
         
         return res.render('products/success', {
+            black: '10% off oferta lanzamiento!!',
             title: 'El producto se ha cargado/actualizado con éxito',
             style: 'deleteStyle.css',
 

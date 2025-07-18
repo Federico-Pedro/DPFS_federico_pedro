@@ -1,0 +1,147 @@
+/* *{
+    border: 1px dotted red;
+} */
+
+.main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+main  {
+    background-color: var(--gray);
+    width: 105vw;
+}
+.presentation-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin: 50px;
+    padding: 25px;
+    background-color: #ffffff;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.main-pic {
+
+    height: 35vw;
+    width: 35vw;
+    padding: 5px;
+    margin-right: 25px;
+    /* border: 1px solid red; */
+}
+
+.main-pic img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--raton);
+    padding: 5px;
+}
+
+.info {
+    padding-top: 25px;
+}
+
+.title {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 40px;
+    color: var(--raton);
+    font-weight: 500;
+    margin: 20px;
+    margin-top: 35px;
+    
+    
+}
+.buttons {
+    display: flex;
+}
+
+.cart-button {
+    margin: 20px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    padding: 5px;
+    width: 250px;
+    border-radius: 8px;
+    background-color: var(--raton);
+    color: #ffffff;
+    font-family: 'Railey';
+    font-size: 32px;
+    font-weight: bold;
+    font-weight: lighter;
+    transition: all 0.5s ease;
+    
+}
+
+.cart-button:hover {
+    box-shadow: 2px 2px 10px var(--ratonClaro);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    
+    .head-title{
+        display: none;
+    }
+    
+    * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-bar {
+        width: 110vw;
+    }
+    
+    .search-input{
+     width: 350px;   
+    }
+
+    .icons-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .icons{
+        margin: 20px;
+        width: 50vw;
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .categories-container{
+        height: 100%;
+    }
+
+    .category {
+        margin-top: 15px;
+        margin-bottom: 15PX;
+        height: 250px;
+    }
+
+    .offer-cards {
+        display: none;
+    }
+
+    footer {
+        padding-top: 50px;
+        
+    }
+}

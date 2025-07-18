@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
+
+            <!-- HEROE -->
+            <main class="main">
+                <div class="presentation-container">
+                    <div class="main-pic">
+                        <img src="/images/db_images/<%= img %>" alt="">
+                    </div>
+                    <div class="presentation">
+                        <div class="info">
+
+                            <h1 class="title">
+                                Nombre: <%= name %>
+                            </h1>
+                            <h1 class="title">
+                                Apellido: <%= lastName %>
+                            </h1>
+                            <h1 class="title">
+                                Email: <%= email %>
+                            </h1>
+                        </div>
+                        <div class="buttons">
+
+                            <form action="/editUser/<%= id %>" method="GET">
+
+                                <button class="cart-button">Editar</button>
+
+                            </form>
+
+                            <form action="/deleteUser/<%= id %>" method="POST">
+
+
+                                <button class="cart-button">Eliminar cuenta</button>
+                            </form>
+
+                            <form action="/" method="GET">
+
+                                <button type="submit" class="cart-button">Home</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

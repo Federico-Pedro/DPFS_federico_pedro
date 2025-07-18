@@ -107,6 +107,13 @@
     box-shadow: inset 2px 2px 5px var(--raton);
 }
 
+.message,
+.passwordMessage {
+    color: red;
+    font-size: 12px;
+    margin: 5px;
+}
+
 form button {
     margin: 20px;
     margin-bottom: 0;

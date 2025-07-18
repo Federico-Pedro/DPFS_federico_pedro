@@ -10,6 +10,13 @@ var productsRouter = require('./routes/productsRoutes');
 
 var app = express();
 
+const session = require('express-session');
+
+app.use(session({
+    secret: '1123581321', 
+    resave: false,
+    saveUninitialized: false
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

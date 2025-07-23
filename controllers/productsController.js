@@ -13,13 +13,16 @@ let productsController = {
         const products = getProducts();
         const categoria = req.params.category;
         const productosFiltrados = products.filter(p => p.category === categoria);
-
+        const user = req.session.user
+        console.log(user)
         return res.render('products/products',
             {
+                user: user,
                 black: '10% off oferta lanzamiento!!',
                 title: categoria,
                 products: productosFiltrados,
-                style: 'productStyle.css'
+                style: 'productStyle.css',
+                userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
 
             });
     },
@@ -36,7 +39,8 @@ let productsController = {
                     black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
                     product: producto,
-                    style: 'detailStyle.css'
+                    style: 'detailStyle.css',
+                    userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
                     
                 });
             } else {
@@ -50,7 +54,8 @@ let productsController = {
             {
                 black: '10% off oferta lanzamiento!!',
                 title: 'Ratón Blanco',
-                style: 'addStyle.css'
+                style: 'addStyle.css',
+                userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
 
             });
     },
@@ -89,7 +94,8 @@ let productsController = {
                     black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
                     product: producto,
-                    style: 'addStyle.css'
+                    style: 'addStyle.css',
+                    userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
                     
                 });
             } else {
@@ -151,6 +157,7 @@ let productsController = {
             black: '10% off oferta lanzamiento!!',
             title: 'El producto ha sido eliminado con éxito',
             style: 'deleteStyle.css',
+            userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
 
         });
     },
@@ -171,6 +178,7 @@ let productsController = {
             black: '10% off oferta lanzamiento!!',
             title: 'El producto se ha cargado/actualizado con éxito',
             style: 'deleteStyle.css',
+            userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
 
         });
     }

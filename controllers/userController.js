@@ -4,8 +4,6 @@ const usersPath = path.join(__dirname, '../data/users.json');
 const bcrypt = require('bcryptjs');
 
 
-
-
 const getUsers = () => {
     return JSON.parse(fs.readFileSync(usersPath, 'utf-8'));
 }
@@ -18,8 +16,15 @@ let userController = {
 
 
     register: function (req, res) {
-        return res.render('users/register', { title: 'Ratón Blanco', style: 'registerStyle.css', black: '10% off oferta lanzamiento!!', oldData: {} });
+        return res.render('users/register',
+            {
+                title: 'Ratón Blanco',
+                style: 'registerStyle.css',
+                black: '10% off oferta lanzamiento!!',
+                oldData: {}
+            });
     },
+
     storeUser: function (req, res) {
         const users = getUsers();
         const data = req.body;
@@ -51,7 +56,7 @@ let userController = {
         users.push(newUser);
         fs.writeFileSync(usersPath, JSON.stringify(users, null, 2), 'utf-8');
 
-        return res.render('users/login', {
+        return res.redirect('users/login', {
             title: '',
             black: 'Usuario registrado con éxito',
             style: 'loginStyle.css',
@@ -59,25 +64,6 @@ let userController = {
             passwordMessage: ''
 
         });
-    },
-
-    profile: function (req, res) {
-        const email = req.params.email;
-        const users = getUsers();
-        const user = users.filter(u => u.email === email);
-
-        return res.render('users/profile', {
-            black: '10% off oferta lanzamiento!!',
-            id: user[0].id,
-            title: "Bienvenido " + user[0].name,
-            email: email,
-            name: user[0].name,
-            lastName: user[0].lastName,
-            img: user[0].img,
-            style: "profilestyle.css",
-
-        })
-
     },
 
     editUser: function (req, res) {
@@ -108,11 +94,13 @@ let userController = {
 
 
         let hashedPassword = users[userIndex].password;
-        if (data.password && data.password.trim() !== "") {
+
+        if (data.password === '') {
+            hashedPassword = hashedPassword;
+        } else if (data.password && data.password.trim() !== "") {
             const salt = bcrypt.genSaltSync(10);
             hashedPassword = bcrypt.hashSync(data.password, salt);
         }
-
 
 
         users[userIndex] = {
@@ -122,14 +110,24 @@ let userController = {
             name: data.name,
             lastName: data.lastName,
             img: req.file ? req.file.filename : users[userIndex].img,
-
         };
 
 
         fs.writeFileSync(usersPath, JSON.stringify(users, null, 2), 'utf-8');
 
 
-        return res.redirect(`/profile/${data.email}`)
+        req.session.user = {
+            id: users[userIndex].id,
+            name: users[userIndex].name,
+            lastName: users[userIndex].lastName,
+            email: users[userIndex].email,
+            img: users[userIndex].img, 
+            type: users[userIndex].type
+        };
+
+
+        return res.redirect('/login');
+
     },
 
     delete: function (req, res) {
@@ -163,13 +161,12 @@ let userController = {
 
     admin: function (req, res) {
         const users = getUsers();
-
-
+        console.log(users);
         const admin = users.filter(u => u.type === "admin");
         console.log(admin.name)
         return res.render('users/admin', {
             black: '10% off oferta lanzamiento!!',
-            title: "Bienvenido " + admin[0].name,
+            title: "Bienvenida " + admin[0].name,
             style: "admin.css",
 
         })
@@ -209,6 +206,7 @@ let userController = {
                 black: '10% off oferta lanzamiento!!',
                 message: '',
                 passwordMessage: 'La contraseña ingresada es incorrecta'
+
             })
         }
         req.session.user = {
@@ -216,20 +214,41 @@ let userController = {
             name: user.name,
             lastName: user.lastName,
             email: user.email,
-            img: user.img
+            img: user.img,
+            type: user.type
         };
-        return res.render('users/profile', {
-            title: 'Perfil',
-            style: 'profilestyle.css',
-            black: 'Bienvenido a Raton Blanco',
-            img: req.session.user.img,
-            name: req.session.user.name,
-            lastName: req.session.user.lastName,
-            email: req.session.user.email,
-            id: req.session.user.id,
-            user: req.session.user
-        });
+        const remember = data.remember;
+        if (remember) {
+            res.cookie('userEmail', user.email, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+        }
+        return res.redirect('/profile')
+    },
 
+    profile: (req, res) => {
+        const user = req.session.user;
+        if (!user) {
+            return res.redirect('users/login');
+        }
+
+        res.render('users/profile',
+            {
+                user,
+                title: 'Raton Blanco',
+                style: 'profilestyle.css',
+                black: 'Bienvenido ' + user.name + ' ' + user.lastName
+
+            });
+    },
+
+    logout: (req, res) => {
+        req.session.destroy((err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send("Error al cerrar sesión");
+            }
+            res.clearCookie('userEmail');
+            res.redirect('/');
+        });
     }
 }
 module.exports = userController

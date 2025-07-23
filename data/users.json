@@ -1,47 +1,11 @@
 [
   {
-    "id": 2,
-    "email": "boletus.tandil@gmail.com",
-    "password": "123987",
-    "name": "Juan",
-    "lastName": "Castro",
-    "img": "user.png",
-    "type": "user"
-  },
-  {
-    "id": 16,
-    "email": "licenciadofpedro@gmail.com",
-    "password": "123456",
-    "name": "Federicus",
-    "lastName": "Mari",
-    "type": "user",
-    "img": "img-1752776500257.png"
-  },
-  {
-    "id": 17,
-    "email": "mariansilva.artandil@gmail.com",
-    "password": "123456789",
-    "name": "Mariana",
-    "lastName": "Silva",
-    "type": "user",
-    "img": "img-1752794935450.jpg"
-  },
-  {
-    "id": 25,
-    "email": "test@test.com",
-    "password": "$2b$10$PzX3HRGOsCYHcZ2YJJwWT.w9Xu.L7iVyf9L.AGdtzT5ajVlQHlUMO",
-    "name": "Leonardo",
-    "lastName": "Da Vinci",
-    "type": "user",
-    "img": "img-1752843578154.png"
-  },
-  {
-    "id": 26,
-    "email": "federicopedroroveda@gmail.com",
-    "password": "$2b$10$aQcOK1uVnF4oOzYnXYBKhuR39VX5T/ySTnsNMzGiPTayrMSc4hcom",
-    "name": "Federico",
-    "lastName": "Pedro",
-    "type": "user",
-    "img": "img-1752870060098.png"
+    "id": 1,
+    "email": "admin@gmail.com",
+    "password": "$2b$10$idbJKQ0AgO.9vPnqKmSDKugyuD7sy2CEES6K.mJw5LKaesPcfiLba",
+    "name": "Admin",
+    "lastName": "Admin",
+    "type": "admin",
+    "img": "img-1753308562637.png"
   }
 ]

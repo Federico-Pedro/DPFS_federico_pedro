@@ -9,14 +9,18 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/productsRoutes');
 
 var app = express();
-
 const session = require('express-session');
 
+
+
 app.use(session({
-    secret: '1123581321', 
-    resave: false,
-    saveUninitialized: false
+  secret: '1123581321', 
+  resave: false,
+  saveUninitialized: false
 }));
+
+
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -25,6 +29,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(userLoggedMiddleware);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

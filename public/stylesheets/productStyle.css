@@ -113,7 +113,7 @@
 
 .admin-buttons {
     display: flex;
-    display: none;
+    /* display: none; */
 }
 .admin-buttons button {
     border: none;
@@ -133,6 +133,15 @@
     font-weight: lighter;
     transition: all 0.5s ease;
 }
+
+.admin-buttons button:hover {
+    box-shadow: 2px 2px 5px var(--raton);
+    color: var(--gray);
+    background-color: #363636;
+}
+
+
+
 @media (max-width: 768px) {
 
     /* * {

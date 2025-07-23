@@ -66,12 +66,12 @@ main  {
     margin-bottom: 0;
     margin-top: 30px;
     padding: 5px;
-    width: 250px;
+    width: 180px;
     border-radius: 8px;
     background-color: var(--raton);
     color: #ffffff;
     font-family: 'Railey';
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     font-weight: lighter;
     transition: all 0.5s ease;

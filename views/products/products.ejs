@@ -43,13 +43,20 @@
                                 </p>
                                 <div class="admin-buttons">
 
-                                    <form method="GET" action="/edit/<%= product.id %>">
-                                        <button type="submit">Editar</button>
-                                    </form>
-                                    <form method="POST" action="/delete/<%= product.id %>">
-                                        <button type="submit"
-                                            onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                                    </form>
+
+
+                                    <% if (user && user.type === 'admin' ) { %>
+
+                                        <form method="GET" action="/edit/<%= product.id %>">
+                                            <button type="submit">Editar</button>
+                                        </form>
+
+                                        <form method="POST" action="/delete/<%= product.id %>">
+                                            <button type="submit"
+                                                onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                                        </form>
+                                        <% } %>
+
                                 </div>
                             </div>
                         </a>

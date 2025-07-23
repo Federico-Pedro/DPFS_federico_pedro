@@ -163,7 +163,11 @@ form button:hover {
     border: none;
 }
 
-
+.confirm-msj{
+    margin: 10px;
+    margin-left: 25px;
+    color: rgb(206, 42, 42);
+}
 
 
 /* ------Queries------ */

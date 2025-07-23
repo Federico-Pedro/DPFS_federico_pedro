@@ -12,39 +12,65 @@
             <main class="main">
                 <div class="presentation-container">
                     <div class="main-pic">
-                        <img src="/images/db_images/<%= img %>" alt="">
+
+
+
+                        <img src="/images/db_images/<%= user.img %>" alt=""
+                            onerror="this.onerror=null; this.src='/images/db_images/user.png';">
+
+
+
+
+
                     </div>
                     <div class="presentation">
                         <div class="info">
 
                             <h1 class="title">
-                                Nombre: <%= name %>
+                                Nombre: <%= user.name %>
                             </h1>
                             <h1 class="title">
-                                Apellido: <%= lastName %>
+                                Apellido: <%= user.lastName %>
                             </h1>
                             <h1 class="title">
-                                Email: <%= email %>
+                                Email: <%= user.email %>
                             </h1>
                         </div>
                         <div class="buttons">
 
-                            <form action="/editUser/<%= id %>" method="GET">
+                            <form action="/editUser/<%= user.id %>" method="GET">
 
                                 <button class="cart-button">Editar</button>
 
                             </form>
 
-                            <form action="/deleteUser/<%= id %>" method="POST">
 
 
-                                <button class="cart-button">Eliminar cuenta</button>
-                            </form>
+                            <% if (user.type === 'user') { %>
+                                <form action="/deleteUser/<%= user.id %>" method="POST">
 
-                            <form action="/" method="GET">
 
-                                <button type="submit" class="cart-button">Home</button>
-                            </form>
+                                            <button class="cart-button">Eliminar cuenta</button>
+                                        </form>
+
+                                <% } else { %>
+                                   <form action="/admin" method="GET">
+
+
+                                            <button class="cart-button" style="background-color: rgb(23, 190, 202);">Administrador</button>
+                                        </form>
+                                    <% } %>
+
+
+
+                                        <form action="/" method="GET">
+
+                                            <button type="submit" class="cart-button">Home</button>
+                                        </form>
+                                        <form action="/logout" method="GET">
+
+                                            <button type="submit" class="cart-button">Cerrar Sesion</button>
+                                        </form>
                         </div>
 
                     </div>

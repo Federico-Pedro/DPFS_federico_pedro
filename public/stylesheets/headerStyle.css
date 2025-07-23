@@ -37,8 +37,6 @@
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-
-
 }
 
 body {
@@ -65,7 +63,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 25px;
+    height: 30px;
     background-color: #000000;
     color: #ffffff;
     padding: 5px;
@@ -140,7 +138,11 @@ body {
 }
 .icon {
     height: 50px;
-    width: auto;
+    width: 50px;
     margin-right: 10px;
+    border-radius: 50%;
+
+    border: 1px solid var(--raton);
+    padding: 2px;
     /* border: 1px solid red; */
 }

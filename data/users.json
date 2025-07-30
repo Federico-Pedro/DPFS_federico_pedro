@@ -7,5 +7,23 @@
     "lastName": "Admin",
     "type": "admin",
     "img": "img-1753308562637.png"
+  },
+  {
+    "id": 2,
+    "email": "federicopedroroveda@gmail.com",
+    "password": "$2b$10$Rh7CXZgJ1ahq5OxZD1UGBuX8doqJ7UW/7QWIfTVU24EkatfIADdFq",
+    "name": "Federico",
+    "lastName": "Pedro",
+    "type": "user",
+    "img": "img-1753817472902.jpeg"
+  },
+  {
+    "id": 3,
+    "email": "marian.silva@gmail.com",
+    "password": "$2b$10$81X73I9hRimi.MmQVaTPN.NraaBnynWx08iqJD8V6DvSrfgvd46Qa",
+    "name": "Mariana",
+    "lastName": "Silva",
+    "type": "user",
+    "img": "img-1753907266418.jpg"
   }
 ]

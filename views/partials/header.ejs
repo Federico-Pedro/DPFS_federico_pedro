@@ -15,7 +15,7 @@
             </form>
             <div class="icons">
 
-                <% if (userLogged) { %>
+                <% if (typeof userLogged !== 'undefined' && userLogged) { %>
                     <a href="/profile">
                         <img class="icon" src="/images/db_images/<%= userLogged.img %>"
                             onerror="this.onerror=null; this.src='/images/db_images/user.png';">
@@ -24,11 +24,11 @@
                     <a href="/cart"><img class="icon" src="/images/icons8-carrito-de-compras-96.png"></a>
 
                     <% } else { %>
-                        <a href="/register">
+                        <a href="/login">
                             <img class="icon" src="/images/icons8-usuario-masculino-en-círculo-96.png">
                         </a>
 
-                        <a href="/login"><img class="icon" src="/images/icons8-carrito-de-compras-96.png"></a>
+                        <a href="/register"><img class="icon" src="/images/icons8-carrito-de-compras-96.png"></a>
                         <% } %>
 
             </div>

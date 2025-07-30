@@ -10,8 +10,6 @@ const getUsers = () => {
 
 
 
-
-
 let userController = {
 
 
@@ -41,6 +39,8 @@ let userController = {
             });
         }
 
+        const filename = 'img-' + Date.now() + path.extname(req.file.originalname);
+        const imagePath = path.join(__dirname, '../public/images/db_images', filename);
 
         const newUser = {
             id: users.length ? users[users.length - 1].id + 1 : 1,
@@ -49,28 +49,23 @@ let userController = {
             name: data.name,
             lastName: data.lastName,
             type: "user",
-            img: req.file ? req.file.filename : 'user.png',
+            img: req.file ? filename : 'user.png',
 
         }
 
         users.push(newUser);
+
+        fs.writeFileSync(imagePath, req.file.buffer);
         fs.writeFileSync(usersPath, JSON.stringify(users, null, 2), 'utf-8');
 
-        return res.redirect('users/login', {
-            title: '',
-            black: 'Usuario registrado con éxito',
-            style: 'loginStyle.css',
-            message: '',
-            passwordMessage: ''
-
-        });
+        return res.redirect('/login');
     },
 
     editUser: function (req, res) {
         const id = Number(req.params.id);
         const users = getUsers();
         const user = users.find(u => id === u.id);
-        console.log(user)
+
         if (user) {
 
             return res.render('users/editUser',
@@ -103,30 +98,77 @@ let userController = {
         }
 
 
-        users[userIndex] = {
-            ...users[userIndex],
-            email: data.email,
-            password: hashedPassword,
-            name: data.name,
-            lastName: data.lastName,
-            img: req.file ? req.file.filename : users[userIndex].img,
-        };
+        //SI LA IMAGEN ES ACTUALIZADA BORRA LA ANTERIOR, ESTO TODAVIA NO FUNCIONA
+        let filename;
+        try {
+
+            if (req.file) {
+                const imagePath = path.join(__dirname, '../public/images/db_images', users[userIndex].img);
+                filename = 'img-' + Date.now() + path.extname(req.file.originalname);
+                console.log('Nombre del archivo' + filename)
+
+                if (fs.existsSync(imagePath)) {
+                    fs.unlinkSync(imagePath);
+                    console.log(`Imagen eliminada: ${users[userIndex].img}`);
+                    const newImagePath = path.join(__dirname, '../public/images/db_images', filename);
+                    fs.writeFileSync(newImagePath, req.file.buffer);
+                } else {
+                    console.log('La imagen no existe en la ruta especificada');
+                }
+            } else {
+                console.log('El usuario no tiene imagen o es undefined');
+            }
 
 
-        fs.writeFileSync(usersPath, JSON.stringify(users, null, 2), 'utf-8');
+            users[userIndex] = {
+                ...users[userIndex],
+                email: data.email,
+                password: hashedPassword,
+                name: data.name,
+                lastName: data.lastName,
+                img: req.file ? filename : users[userIndex].img,
+            };
+
+            fs.writeFileSync(usersPath, JSON.stringify(users, null, 2), 'utf-8');
 
 
-        req.session.user = {
-            id: users[userIndex].id,
-            name: users[userIndex].name,
-            lastName: users[userIndex].lastName,
-            email: users[userIndex].email,
-            img: users[userIndex].img, 
-            type: users[userIndex].type
-        };
+            req.session.user = {
+                id: users[userIndex].id,
+                name: users[userIndex].name,
+                lastName: users[userIndex].lastName,
+                email: users[userIndex].email,
+                img: users[userIndex].img,
+                type: users[userIndex].type
+            };
 
 
-        return res.redirect('/login');
+
+
+            if (req.session.user) {
+                console.log('ESTO ESTA FUNCIONANDO')
+                req.session.destroy((err) => {
+                    if (err) {
+                        console.log('Error al destruir la sesión:', err);
+                    }
+
+                    res.clearCookie('connect.sid');
+                    res.clearCookie('userEmail');
+                    return res.redirect('/login');
+
+                });
+            } else {
+
+                return res.redirect('/login');
+            }
+
+        } catch (error) {
+            console.error('Error al editar usuario:', error);
+            return res.render('products/notFound', {
+                black: '10% off oferta lanzamiento!!',
+                title: 'Error al editar usuario',
+                style: 'deleteStyle.css'
+            });
+        }
 
     },
 
@@ -134,39 +176,76 @@ let userController = {
         const id = Number(req.params.id);
         const users = getUsers();
 
+        const eliminated = users.find(p => p.id === id);
         const allUsers = users.filter(p => p.id !== id);
-        const eliminated = users.filter(p => p.id === id);
 
-
-        if (eliminated.length < 1) {
+        if (!eliminated) {
             return res.render('products/notFound', {
                 black: '10% off oferta lanzamiento!!',
                 title: 'Usuario no encontrado',
                 style: 'deleteStyle.css'
-            })
-        } else {
+            });
+        }
+
+        try {
+
+            if (eliminated.img && eliminated.img !== 'user.png') {
+                const imagePath = path.join(__dirname, '../public/images/db_images', eliminated.img);
+
+
+                if (fs.existsSync(imagePath)) {
+                    fs.unlinkSync(imagePath);
+                    console.log(`Imagen eliminada: ${eliminated.img}`);
+                } else {
+                    console.log('La imagen no existe en la ruta especificada');
+                }
+            } else {
+                console.log('El usuario no tiene imagen o eliminated.img es undefined');
+            }
 
 
             fs.writeFileSync(usersPath, JSON.stringify(allUsers, null, 2), 'utf-8');
 
+
+            if (req.session.userLogged && req.session.userLogged.id === id) {
+                req.session.destroy((err) => {
+                    if (err) {
+                        console.log('Error al destruir la sesión:', err);
+                    }
+
+                    res.clearCookie('connect.sid');
+                    res.clearCookie('userEmail');
+
+
+                    return res.redirect('/');
+                });
+            } else {
+
+                return res.render('products/notFound', {
+                    black: '10% off oferta lanzamiento!!',
+                    title: 'Usuario eliminado con éxito',
+                    style: 'deleteStyle.css'
+                });
+            }
+
+        } catch (error) {
+            console.error('Error al eliminar usuario:', error);
             return res.render('products/notFound', {
                 black: '10% off oferta lanzamiento!!',
-                title: 'Usuario eliminado con exito',
+                title: 'Error al eliminar usuario',
                 style: 'deleteStyle.css'
-            })
+            });
         }
-
-
     },
 
     admin: function (req, res) {
         const users = getUsers();
         console.log(users);
-        const admin = users.filter(u => u.type === "admin");
+        const admin = users.find(u => u.type === "admin");
         console.log(admin.name)
         return res.render('users/admin', {
             black: '10% off oferta lanzamiento!!',
-            title: "Bienvenida " + admin[0].name,
+            title: "Bienvenida " + admin.name,
             style: "admin.css",
 
         })

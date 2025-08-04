@@ -1,4 +1,4 @@
-const db = require('../data/users.json'); 
+const db = require('../database/models'); 
 
 function userLoggedMiddleware(req, res, next) {
   
@@ -10,10 +10,15 @@ function userLoggedMiddleware(req, res, next) {
   
   if (req.cookies.userEmail) {
     
-    const user = db.find(user => user.email === req.cookies.userEmail);
+    const user = db.User.findOne({
+                where: {
+                    email: req.cookies.userEmail
+                }
+            });
+
     if (user) {
       req.session.user = {
-        id: user.id,
+        id: user.user_id,
         name: user.name,
         lastName: user.lastName,
         email: user.email,

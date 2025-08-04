@@ -22,7 +22,9 @@
                 <div class="form-container">
                     <h3 class="form-subtitle">Editá tu informacion personal</h3>
 
-                    <form class="form" id="form" action="/updateUser/<%= user.id %>" method="POST" enctype="multipart/form-data">
+
+                    <form class="form" id="form" action="/updateUser/<%= user.user_id %>" method="POST"
+                        enctype="multipart/form-data">
                         <div class="inputs">
 
                             <div class="form-group">
@@ -70,7 +72,8 @@
                         </div>
 
                         <button type="submit">Actualizar</button>
-                        <div class="confirm-msj">Luego de actualizar tu información deberás volver a iniciar sesión</div>
+                        <div class="confirm-msj">Luego de actualizar tu información deberás volver a iniciar sesión
+                        </div>
                     </form>
                 </div>
 

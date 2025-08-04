@@ -37,7 +37,7 @@
                             </h1>
                         </div>
                         <div class="buttons">
-
+                            
                             <form action="/editUser/<%= user.id %>" method="GET">
 
                                 <button class="cart-button">Editar</button>
@@ -46,19 +46,20 @@
 
 
 
-                            <% if (user.type === 'user') { %>
+                            <% if (user.role==='user' ) { %>
                                 <form action="/deleteUser/<%= user.id %>" method="POST">
 
 
-                                            <button class="cart-button">Eliminar cuenta</button>
-                                        </form>
+                                    <button class="cart-button">Eliminar cuenta</button>
+                                </form>
 
                                 <% } else { %>
-                                   <form action="/admin" method="GET">
+                                    <form action="/admin" method="GET">
 
 
-                                            <button class="cart-button" style="background-color: rgb(23, 190, 202);">Administrador</button>
-                                        </form>
+                                        <button class="cart-button"
+                                            style="background-color: rgb(23, 190, 202);">Administrador</button>
+                                    </form>
                                     <% } %>
 
 

@@ -12,7 +12,7 @@
             <main class="main">
                 <div class="presentation-container">
                     <div class="main-pic">
-                        <img src="/images/db_images/<%= product.img %>" alt="">
+                        <img src="/images/products/<%= product.img %>" alt="">
                     </div>
                     <div class="presentation">
                         <h1 class="title">
@@ -26,7 +26,9 @@
                         </h4>
                         <h3 class="price">$ <%= product.price %>
                         </h3>
-                        <button class="cart-button">Agregar al carrito</button>
+                        <form action="/add/<%= product.product_id %>" method="POST">
+                            <button class="cart-button">Agregar al carrito</button>
+                        </form>
                         <a href="/products/<%= product.category %>">
                             <h6>
                                 < Back </h6>

@@ -19,7 +19,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Product', 
+                model: 'Products', 
                 key: 'product_id' 
             }
         }
@@ -29,7 +29,7 @@ module.exports = function (sequelize, dataTypes) {
 
     let config = {
         tableName: 'cartProduct',
-        timestamps: true,
+        timestamps: false,
         //underscored : true
     }
 

@@ -18,13 +18,13 @@ let userController = {
                 oldData: {}
             });
     },
-    
+
     storeUser: async function (req, res) {
 
         try {
 
             let data = req.body;
-           
+
             const mailExists = await db.User.findOne({
                 where: {
                     email: req.body.email
@@ -58,11 +58,24 @@ let userController = {
             }
             if (req.file) {
 
-                const imagePath = path.join(__dirname, '../public/images/db_images', filename);
-                await db.User.create(newUser);
+                const imagePath = path.join(__dirname, '../public/images/users', filename);
+                const user = await db.User.create(newUser);
                 fs.writeFileSync(imagePath, req.file.buffer);
+                
+                const user_id = user.user_id;
+                const newCart = {
+                    user_id: user_id,
+                    status: 'active'
+                }
+                await db.Cart.create(newCart);
+
+
+
+
+
+
             } else {
-                // Si no hay imagen, solo crear usuario
+
                 await db.User.create(newUser);
             }
 
@@ -132,22 +145,44 @@ let userController = {
         return res.redirect('/profile')
     },
 
-    profile: function (req, res) {
-        const user = req.session.user;
-        if (!user) {
-            return res.redirect('users/login');
+    profile: async function (req, res) {
+
+        if (!req.session.user && req.cookies.userEmail) {
+
+            const user = await db.User.findOne({
+                where: {
+                    email: req.cookies.userEmail
+                }
+            });
+
+            if (user) {
+
+                req.session.user = {
+                    id: user.user_id,
+                    name: user.name,
+                    lastName: user.lastName,
+                    email: user.email,
+                    img: user.img,
+                    role: user.role
+                };
+            }
+
         }
 
-        res.render('users/profile',
-            {
-                user,
-                title: 'Raton Blanco',
-                style: 'profilestyle.css',
-                black: 'Bienvenido ' + user.name + ' ' + user.lastName
 
-            });
+        const user = req.session.user;
+
+        if (!user) {
+            return res.redirect('/users/login');
+        }
+
+        res.render('users/profile', {
+            user,
+            title: 'Raton Blanco',
+            style: 'profilestyle.css',
+            black: 'Bienvenido ' + user.name + ' ' + user.lastName
+        });
     },
-
 
     editUser: async function (req, res) {
         const id = Number(req.params.id);
@@ -186,14 +221,14 @@ let userController = {
             try {
 
                 if (req.file) {
-                    const imagePath = path.join(__dirname, '../public/images/db_images', user.img);
+                    const imagePath = path.join(__dirname, '../public/images/users', user.img);
                     filename = 'img-' + Date.now() + path.extname(req.file.originalname);
                     console.log('Nombre del archivo ' + filename)
 
                     if (fs.existsSync(imagePath)) {
                         fs.unlinkSync(imagePath);
                         console.log(`Imagen eliminada: ${user.img}`);
-                        const newImagePath = path.join(__dirname, '../public/images/db_images', filename);
+                        const newImagePath = path.join(__dirname, '../public/images/users', filename);
                         fs.writeFileSync(newImagePath, req.file.buffer);
                     } else {
                         console.log('La imagen no existe en la ruta especificada');
@@ -211,7 +246,7 @@ let userController = {
                     lastName: data.lastName,
                     img: req.file ? filename : user.img,
                 };
-                
+
                 await db.User.update(user, {
                     where: {
                         user_id: id
@@ -258,7 +293,7 @@ let userController = {
             const user = await db.User.findByPk(id);
 
             if (user.img && user.img !== 'user.png') {
-                const imagePath = path.join(__dirname, '../public/images/db_images', user.img);
+                const imagePath = path.join(__dirname, '../public/images/users', user.img);
 
 
                 if (fs.existsSync(imagePath)) {
@@ -271,9 +306,14 @@ let userController = {
                 console.log('El usuario no tiene imagen o eliminated.img es undefined');
             }
 
+            await db.Cart.destroy({
+                where : {
+                    user_id: id
+                }
+            })
             const deleted = await db.User.destroy({
                 where: {
-                    user_id: id
+                    user_id: user.user_id
                 }
             });
 
@@ -297,6 +337,9 @@ let userController = {
 
                     return res.redirect('/');
                 });
+            } else {
+
+                return res.redirect('/profile');
             }
 
         } catch (error) {
@@ -307,14 +350,15 @@ let userController = {
 
 
 
-    admin: function (req, res) {
-        
-        const admin = db.User.findOne({
-                where: {
-                    role: "admin"
-                }
-            })
-        
+    admin: async function (req, res) {
+
+        const admin = await db.User.findOne({
+            where: {
+                role: "admin"
+            }
+        })
+
+
         return res.render('users/admin', {
             black: '10% off oferta lanzamiento!!',
             title: "Bienvenid@ " + admin.name,

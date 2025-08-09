@@ -88,8 +88,6 @@ body {
     width: fit-content;
     display: flex;
     align-items: center;
-
-
 }
 
 .header-logo {
@@ -128,21 +126,36 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-right: 40px;
-    /* border: 1px solid red; */
+    
 }
 
 .icons {
     margin-left: 25px;
     display: flex;
     flex-direction: row;
+   
 }
 .icon {
     height: 50px;
     width: 50px;
     margin-right: 10px;
     border-radius: 50%;
-
+    
     border: 1px solid var(--raton);
     padding: 2px;
     /* border: 1px solid red; */
+}
+
+.cart-icon {
+    display: flex;
+    position: relative;
+}
+.cart-counter {
+    color: red;
+    font-size: 18px;
+    font-family: 'Railey' ;
+    position: absolute;
+    top: -6px;
+    right: -3px;
+
 }

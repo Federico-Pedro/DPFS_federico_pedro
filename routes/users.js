@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+const productsController = require('../controllers/productsController')
 const userController = require('../controllers/userController')
 const upload = require('../middlewares/multerMiddleware');
 const guestMiddleware = require('../middlewares/guestMiddleware');
@@ -15,6 +16,7 @@ router.get('/editUser/:id', authMiddleware, userController.editUser);
 router.post('/updateUser/:id', upload.single('image'), userController.updateUser);
 router.post('/deleteUser/:id', userController.delete);
 router.post('/loginUser', userController.loginUser);
-router.get('/logout', userController.logout)
+router.get('/logout', userController.logout);
+router.get('/list', productsController.list);
 
 module.exports = router;

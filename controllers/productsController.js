@@ -1,51 +1,69 @@
 const fs = require('fs');
 const path = require('path');
 
-const productsPath = path.join(__dirname, '../data/products.json');
 
-const getProducts = () => {
-  return JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
-};
+let db = require('../database/models');
+
 
 
 let productsController = {
-    products: function (req, res) {
-        const products = getProducts();
-        const categoria = req.params.category;
-        const productosFiltrados = products.filter(p => p.category === categoria);
+    products: async function (req, res) {
+        const products = await db.Products.findAll({
+            where: {
+                category: req.params.category
+            }
+        });
+
         const user = req.session.user
-        console.log(user)
+
         return res.render('products/products',
             {
                 user: user,
                 black: '10% off oferta lanzamiento!!',
-                title: categoria,
-                products: productosFiltrados,
+                title: req.params.category,
+                products: products,
                 style: 'productStyle.css',
-                userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
+                userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
 
             });
     },
 
-    detail: function (req, res) {
-        const id = Number(req.params.id);
-        const products = getProducts();
-        const producto = products.find(p => id === p.id);
+    list: async function (req, res) {
+        const products = await db.Products.findAll();
 
-        if(producto) {
+        const user = req.session.user
+
+        return res.render('products/products',
+            {
+                user: user,
+                black: '10% off oferta lanzamiento!!',
+                title: 'Todos los productos',
+                products: products,
+                style: 'productStyle.css',
+                userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
+
+            });
+    },
+
+    detail: async function (req, res) {
+
+        const id = req.params.id;
+        const product = await db.Products.findByPk(id);
+
+        if (product) {
 
             return res.render('products/detail',
                 {
                     black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
-                    product: producto,
+                    product: product,
                     style: 'detailStyle.css',
-                    userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
-                    
+                    userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
+
                 });
-            } else {
-               return res.redirect('/notFound')
-            }
+        } else {
+            return res.redirect('/notFound')
+        }
     },
 
 
@@ -55,100 +73,144 @@ let productsController = {
                 black: '10% off oferta lanzamiento!!',
                 title: 'Ratón Blanco',
                 style: 'addStyle.css',
-                userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
+                userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
 
             });
     },
 
-    store: function (req, res) {
-        const products = getProducts();
+    store: async function (req, res) {
+
 
         const data = req.body;
-        console.log(data);
-        
+        let filename;
+        if (req.file) {
+            filename = 'img-' + Date.now() + path.extname(req.file.originalname);
+        }
+
         const newProduct = {
-            black: '10% off oferta lanzamiento!!',
-            id: products.length ? products[products.length - 1].id + 1 : 1,
             name: data.name,
             description: data.description,
             material: data.material,
-            img: req.file ? req.file.filename : 'raton.png',
+            img: req.file ? filename : 'raton.png',
             category: data.category,
             price: Number(data.price)
         }
+        if (req.file) {
 
-        products.push(newProduct);
-        fs.writeFileSync(productsPath, JSON.stringify(products, null, 2), 'utf-8');
+            const imagePath = path.join(__dirname, '../public/images/products', filename);
+            await db.Products.create(newProduct);
+            fs.writeFileSync(imagePath, req.file.buffer);
+        } else {
+
+            await db.User.create(newProduct);
+        }
 
         return res.redirect('/success')
     },
 
-    edit: function (req, res) {
+
+    edit: async function (req, res) {
         const id = Number(req.params.id);
-        const products = getProducts();
-        const producto = products.find(p => id === p.id);
-        if(producto) {
+        const product = await db.Products.findByPk(id);
+        if (product) {
 
             return res.render('products/editProduct',
                 {
                     black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
-                    product: producto,
+                    product: product,
                     style: 'addStyle.css',
-                    userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
-                    
+                    userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
+
                 });
-            } else {
-                return res.redirect('/notFound')
-            }
+        } else {
+            return res.redirect('/notFound')
+        }
     },
 
-    update: function (req, res) {
-        const id = Number(req.params.id);
-        const data = req.body;
-              
+    update: async function (req, res) {
+        try {
 
-            let products = getProducts();
-            
-            const productIndex = products.findIndex(p => p.id === id);
-            
-            
-            products[productIndex] = {
-                ...products[productIndex],
+            const id = Number(req.params.id);
+            const data = req.body;
+            console.log(data);
+            let product = await db.Products.findByPk(id);
+            console.log(product);
+            let filename;
+            console.log("EL ARCHIVO NUEVO ES: " + req.file);
+            if (req.file) {
+                const imagePath = path.join(__dirname, '../public/images/products', product.img);
+                filename = 'img-' + Date.now() + path.extname(req.file.originalname);
+                console.log('Nombre del archivo ' + filename)
+
+                if (fs.existsSync(imagePath)) {
+                    fs.unlinkSync(imagePath);
+                    console.log(`Imagen eliminada: ${product.img}`);
+                    const newImagePath = path.join(__dirname, '../public/images/products', filename);
+                    fs.writeFileSync(newImagePath, req.file.buffer);
+                } else {
+                    console.log('La imagen no existe en la ruta especificada');
+                }
+            } else {
+                filename = 'user.png';
+                console.log('El producto no tiene imagen o es undefined');
+
+            };
+
+            product = {
+                ...product.dataValues,
                 name: data.name,
                 description: data.description,
                 material: data.material,
-                img: req.file ? req.filename : products[productIndex].img,
+                img: req.file ? filename : product.img,
                 category: data.category,
                 price: Number(data.price)
-        };
-        
-        
-        fs.writeFileSync(productsPath, JSON.stringify(products, null, 2), 'utf-8');
-        
-        return res.redirect('/success')
+            }
+            await db.Products.update(product, {
+                where: {
+                    product_id: id
+                }
+            });
+            return res.redirect('/success')
+        } catch (error) {
+            console.log('Error: ' + error)
+            return res.redirect('/notFound')
+        }
     },
 
 
-    delete: function (req, res) {
+    delete: async function (req, res) {
         const id = Number(req.params.id);
-        const products = getProducts();
-        
-        const newProducts = products.filter(p => p.id !== id);
-        const eliminated = products.filter(p => p.id === id); 
-        
-        console.log(eliminated)
-        if (eliminated.length < 1){
+        const product = await db.Products.findByPk(id);
+
+        if (!product) {
             return res.redirect('/notFound')
         } else {
+            if (product.img && product.img !== 'raton.png') {
+                            const imagePath = path.join(__dirname, '../public/images/products', product.img);
+            
+            
+                            if (fs.existsSync(imagePath)) {
+                                fs.unlinkSync(imagePath);
+                                console.log(`Imagen eliminada: ${product.img}`);
+                            } else {
+                                console.log('La imagen no existe en la ruta especificada');
+                            }
+                        } else {
+                            console.log('El producto no tiene imagen o product.img es undefined');
+                        }
 
+            await db.Products.destroy({
+                where: {
+                    product_id: id
+                }
+            });
             
-            fs.writeFileSync(productsPath, JSON.stringify(newProducts, null, 2), 'utf-8');
-            
+
             return res.redirect('/deleted');
         }
-        
-        
+
+
     },
 
     deleted: function (req, res) {
@@ -157,13 +219,13 @@ let productsController = {
             black: '10% off oferta lanzamiento!!',
             title: 'El producto ha sido eliminado con éxito',
             style: 'deleteStyle.css',
-            userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
+            userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
 
         });
     },
 
     notFound: function (req, res) {
-        
+
         return res.render('products/notFound', {
             black: '10% off oferta lanzamiento!!',
             title: 'Producto no encontrado',
@@ -173,12 +235,12 @@ let productsController = {
     },
 
     success: function (req, res) {
-        
+
         return res.render('products/success', {
             black: '10% off oferta lanzamiento!!',
             title: 'El producto se ha cargado/actualizado con éxito',
             style: 'deleteStyle.css',
-            userLogo:"/images/icons8-usuario-masculino-en-círculo-96.png"
+            userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
 
         });
     }

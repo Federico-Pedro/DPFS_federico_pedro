@@ -1,6 +1,6 @@
 const db = require('../database/models'); 
 
-function userLoggedMiddleware(req, res, next) {
+async function userLoggedMiddleware(req, res, next) {
   
   if (req.session.user) {
     res.locals.userLogged = req.session.user;
@@ -10,7 +10,7 @@ function userLoggedMiddleware(req, res, next) {
   
   if (req.cookies.userEmail) {
     
-    const user = db.User.findOne({
+    const user = await db.User.findOne({
                 where: {
                     email: req.cookies.userEmail
                 }
@@ -23,7 +23,7 @@ function userLoggedMiddleware(req, res, next) {
         lastName: user.lastName,
         email: user.email,
         img: user.img,
-        type: user.type
+        role: user.role
       };
       res.locals.userLogged = req.session.user;
     }

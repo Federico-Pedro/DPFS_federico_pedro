@@ -6,7 +6,7 @@ const mainController = require('../controllers/mainController')
 /* GET home page. */
 router.get('/', mainController.index);
 
-router.get('/cart', mainController.cart);
+
 
 
 

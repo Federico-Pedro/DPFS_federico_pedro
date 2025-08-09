@@ -28,11 +28,11 @@
 
 
                     <% products.forEach(product=> { %>
-                        <a href="/detail/<%= product.id %>">
+                        <a href="/detail/<%= product.product_id %>">
 
                             <div class="card">
 
-                                <img class="card-image" src="/images/db_images/<%= product.img %>" />
+                                <img class="card-image" src="/images/products/<%= product.img %>" />
                                 <h2 class="title">
                                     <%= product.name %>
                                 </h2>
@@ -45,13 +45,13 @@
 
 
 
-                                    <% if (user && user.type === 'admin' ) { %>
+                                    <% if (user && user.role === 'admin' ) { %>
 
-                                        <form method="GET" action="/edit/<%= product.id %>">
+                                        <form method="GET" action="/edit/<%= product.product_id %>">
                                             <button type="submit">Editar</button>
                                         </form>
 
-                                        <form method="POST" action="/delete/<%= product.id %>">
+                                        <form method="POST" action="/delete/<%= product.product_id %>">
                                             <button type="submit"
                                                 onclick="return confirm('¿Estás seguro?')">Eliminar</button>
                                         </form>

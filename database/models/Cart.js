@@ -15,6 +15,7 @@ module.exports = function (sequelize, dataTypes) {
                 key: 'user_id' 
             }
         },
+        
         status: {
             type: dataTypes.STRING(50)
         },
@@ -25,7 +26,7 @@ module.exports = function (sequelize, dataTypes) {
 
     let config = {
         tableName: 'cart',
-        timestamps: true,
+        timestamps: false,
         //underscored : true
     }
 

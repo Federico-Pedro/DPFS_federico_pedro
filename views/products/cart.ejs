@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include('../partials/head')  %>
+<%- include('../partials/head') %>
 
-<body>
+    <body>
 
-    <!-- HEADER -->
-    <%- include('../partials/header')  %>
+        <!-- HEADER -->
+        <%- include('../partials/header') %>
 
-    <!-- HEROE -->
-    <main class="main">
-        <div class="main-container">
-            <h1>Mi carrito</h1>
+            <!-- HEROE -->
+            <main class="main">
+                <div class="main-container">
+                    <h1>Mi carrito</h1>
 
-            <div class="secondary-container">
 
-                <div class="producto">
-                    <div class="main-pic">
-                        <img src="/images/caracola.jpeg" alt="">
-                    </div>
-                    <div class="name-container">
-                        <h3 class="product-name">Nombre del producto</h1>
-                            <h3 class="price">$46.500</h3>
-                    </div>
+                    <% products.forEach(product=> { %>
+                        <div class="secondary-container">
+                            <div class="producto">
+                                <div class="main-pic">
+                                    <img src="/images/products/<%= product.img %>" alt="">
+                                </div>
+                                <div class="name-container">
+                                    <h3 class="product-name">
+                                        <%= product.name %>
+                                            </h1>
+                                            <h3 class="price">$ <%= product.price %>
+                                            </h3>
+                                </div>
+                            </div>
+
+                            <div class="quantity-container">
+                                <div class="quantity">
+                                    <div class="quantity-number">
+                                        <h2>Cantidad: </h2>
+                                        <h2>1</h2>
+                                    </div>
+                                    <div class="add">
+                                        <h2> - </h2>
+                                        <h2> + </h2>
+                                    </div>
+                                </div>
+                                <div class="eliminar">
+                                    <form action="/eliminate/<%= product.product_id %>" method="POST" >
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit">Eliminar producto</button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <% }); %>
+
+
+                            <div class="buttons-container">
+
+                                <form action="/buy">
+
+                                    <label class="envoltorio" for="envoltorio">
+
+                                        <input type="checkbox" id="envoltorio" value="envoltorio">¿Envoltorio especial
+                                        para
+                                        regalo?</input>
+                                    </label>
+
+                                    <div class="buttons">
+                                        <button type="submit">Finalizar compra</button>
+                                </form>
+                                <form action="/">
+
+                                    <button>Volver</button>
+                                </form>
+                            </div>
+                </div>
                 </div>
 
-                <div class="quantity-container">
-                    <div class="quantity">
-                        <div class="quantity-number">
-                        <h2>Cantidad:  </h2>
-                        <h2>1</h2>
-                        </div>
-                        <div class="add">
-                            <h2> - </h2>
-                            <h2> + </h2>
-                        </div>
-                    </div>
-                    <div class="eliminar">
-                        <h4>Eliminar</h4>
-                    </div>
-                </div>
-            </div>
-            <label class="envoltorio" for="envoltorio">
 
-                <input type="checkbox" id="envoltorio" value="envoltorio">¿Envoltorio especial para regalo?</input>
-            </label>
+            </main>
 
-            <div class="buttons">
-                <button type="submit">Finalizar compra</button>
-                <button>Volver</button>
-            </div>
-        </div>
+            <!-- FOOTER -->
+            <%- include('../partials/footer') %>
 
-
-    </main>
-
-    <!-- FOOTER -->
-    <%- include('../partials/footer')  %>
-
-</body>
+    </body>
 
 </html>

@@ -6,17 +6,21 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
+    
 }
 
 .main-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100vw;
+    height:auto;
     padding: 25px;
     background-color: #ffffff;
     border: 1px solid var(--raton);
+    border: 1px dotted green;
+    /* border: 1px dotted red; */
 }
 
 .main-container h1 {
@@ -55,13 +59,18 @@ button:hover,
 
 .main-container label input:checked {
     accent-color: var(--raton);
+    
 }
 
 
 .secondary-container {
     display: flex;
+    
+    margin: 10px;
+    padding: 5px;
     border: 2px solid var(--ratonClaro);
     width: 90vw;
+    
 
 }
 
@@ -86,14 +95,18 @@ button:hover,
 }
 
 .quantity-container {
+    display: flex;
+    flex-direction: column;
     padding: 15px;
+    
 }
 
 .quantity {
     display: flex;
     justify-content: space-between;
     width: 40vw;
-    
+    height: fit-content;
+    border-bottom: 1px solid var(--ratonClaro);
 }
 
 .quantity-number, .add {
@@ -116,11 +129,15 @@ button:hover,
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    height: fit-content;
+    /*border: 1px solid red;*/
 }
 
-.eliminar h4 {
+.eliminar button {
     font-weight: lighter;
     color: var(--raton);
+    background-color: transparent;
+    border: none;
 }
 
 .name-container {
@@ -146,7 +163,12 @@ button:hover,
     font-weight: lighter;
 }
 
-
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
 
 .buttons {
     display: flex;
@@ -186,10 +208,7 @@ button:hover,
 
 
 
-.quantity-container {
-    display: flex;
-    flex-direction: row;
-}
+
 
 
 

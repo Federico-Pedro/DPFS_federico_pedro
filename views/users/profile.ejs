@@ -15,8 +15,8 @@
 
 
 
-                        <img src="/images/db_images/<%= user.img %>" alt=""
-                            onerror="this.onerror=null; this.src='/images/db_images/user.png';">
+                        <img src="/images/users/<%= user.img %>" alt=""
+                            onerror="this.onerror=null; this.src='/images/users/user.png';">
 
 
 
@@ -28,6 +28,7 @@
 
                             <h1 class="title">
                                 Nombre: <%= user.name %>
+                                
                             </h1>
                             <h1 class="title">
                                 Apellido: <%= user.lastName %>
@@ -46,11 +47,11 @@
 
 
 
-                            <% if (user.role==='user' ) { %>
+                            <% if (user.role ==='user' ) { %>
                                 <form action="/deleteUser/<%= user.id %>" method="POST">
 
 
-                                    <button class="cart-button">Eliminar cuenta</button>
+                                    <button class="cart-button" onclick="return confirm('¿Estás segur@ que deseas eliminar esta cuenta?')">Eliminar cuenta</button>
                                 </form>
 
                                 <% } else { %>

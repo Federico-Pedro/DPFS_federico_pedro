@@ -4,8 +4,12 @@ const cartPrice = async (req, res, next) => {
 
     res.locals.cartPrice = 0;
     res.locals.hasItems = false;
+    
 
     try {
+        if (req.session.user && req.session.user.role === 'admin') {
+            return next();
+        }
         const cart = await db.Cart.findOne({
             where: { user_id: req.session.user.id }
         });

@@ -67,16 +67,18 @@ let userController = {
                     user_id: user_id,
                     status: 'active'
                 }
-                await db.Cart.create(newCart);
+                if (req.body.password && req.body.password !== "1123581321") {
 
-
-
-
-
+                    await db.Cart.create(newCart);
+                }
 
             } else {
 
-                await db.User.create(newUser);
+               if (req.body.password && req.body.password !== "1123581321") {
+
+                    await db.Cart.create(newCart);
+                }
+
             }
 
             return res.redirect('/login');

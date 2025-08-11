@@ -6,7 +6,9 @@ const cartMiddleware = async (req, res, next) => {
     res.locals.hasItems = false;
 
     try {
-        
+        if (req.session.user && req.session.user.role === 'admin') {
+            return next();
+        }
         const cart = await db.Cart.findOne({
             where: { user_id: req.session.user.id }
         });
@@ -14,7 +16,7 @@ const cartMiddleware = async (req, res, next) => {
             where: { cart_id: cart.cart_id },
 
         });
-        console.log(cartProducts);
+        
         if (cartProducts.length > 0) {
 
             const productsCount = cartProducts.length;

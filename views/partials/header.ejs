@@ -21,7 +21,7 @@
                             onerror="this.onerror=null; this.src='/images/users/user.png';">
                     </a>
                     <div class="cart-icon">
-                        <% if (user && user.role!=='admin' ) { %>
+                        <% if (userLogged && userLogged.role!=='admin' ) { %>
 
 
                             <a href="/cart"><img class="icon" src="/images/icons8-carrito-de-compras-96.png"></a>

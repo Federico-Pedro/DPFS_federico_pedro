@@ -200,6 +200,12 @@ let productsController = {
                             console.log('El producto no tiene imagen o product.img es undefined');
                         }
 
+            await db.CartProduct.destroy({
+                where : {
+                    product_id : product.product_id
+                }
+            })            
+
             await db.Products.destroy({
                 where: {
                     product_id: id
@@ -209,7 +215,6 @@ let productsController = {
 
             return res.redirect('/deleted');
         }
-
 
     },
 

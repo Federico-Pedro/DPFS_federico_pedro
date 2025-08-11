@@ -163,6 +163,15 @@ button:hover,
     font-weight: lighter;
 }
 
+.total {
+    display: flex;
+    font-family: 'Railey';
+    font-size: 25px;
+    color: var(--raton);
+    align-self: flex-end;
+    margin-right: 110px;
+}
+
 .buttons-container {
     display: flex;
     flex-direction: row;

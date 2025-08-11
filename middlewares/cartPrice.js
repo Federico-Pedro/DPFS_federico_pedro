@@ -22,19 +22,19 @@ const cartPrice = async (req, res, next) => {
         });
 
         const totalPrice = products.reduce((sum, item) => {
-            return sum + item.price;
+            return sum + Number(item.price);
         }, 0);
+
         res.locals.totalPrice = totalPrice;
         res.locals.hasItems = true;
-
-
+  
 
     } catch (error) {
-        console.error('Error en cartMiddleware:', error);
+        console.error('Error en cartPrice:', error);
 
     }
 
     next();
 };
 
-module.exports = cartMiddleware;
+module.exports = cartPrice;

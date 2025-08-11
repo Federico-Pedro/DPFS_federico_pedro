@@ -32,7 +32,12 @@
 
                             <div class="card">
 
-                                <img class="card-image" src="/images/products/<%= product.img %>" />
+                                
+                                
+                                  <img class="card-image" src="/images/products/<%= product.img || 'raton.png' %>" onerror="this.src='/images/products/raton.png'"/>
+                                    
+                               
+                                   
                                 <h2 class="title">
                                     <%= product.name %>
                                 </h2>

@@ -6,6 +6,7 @@ const cartMiddleware = async (req, res, next) => {
     res.locals.hasItems = false;
 
     try {
+        
         const cart = await db.Cart.findOne({
             where: { user_id: req.session.user.id }
         });
@@ -20,8 +21,7 @@ const cartMiddleware = async (req, res, next) => {
             res.locals.cartCount = productsCount;
             res.locals.hasItems = true;
         }
-
-
+    
     } catch (error) {
         console.error('Error en cartMiddleware:', error);
 

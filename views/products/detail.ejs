@@ -26,13 +26,15 @@
                         </h4>
                         <h3 class="price">$ <%= product.price %>
                         </h3>
-                        <form action="/add/<%= product.product_id %>" method="POST">
-                            <button class="cart-button">Agregar al carrito</button>
-                        </form>
-                        <a href="/products/<%= product.category %>">
-                            <h6>
-                                < Back </h6>
-                        </a>
+                        <% if(user.role !=='admin' ) { %>
+                            <form action="/add/<%= product.product_id %>" method="POST">
+                                <button class="cart-button">Agregar al carrito</button>
+                            </form>
+                            <% } %>
+                                <a href="/products/<%= product.category %>">
+                                    <h6>
+                                        < Back </h6>
+                                </a>
                     </div>
                 </div>
 

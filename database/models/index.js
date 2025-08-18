@@ -37,6 +37,49 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+
+
+//ASOCIACIONES
+
+db.User.hasMany(db.Cart, {
+  foreignKey: 'user_id',
+  as: 'carts'
+});
+db.Cart.belongsTo(db.User, {
+  foreignKey: 'user_id',
+  as: 'user'
+});
+
+
+db.Cart.hasMany(db.CartProduct, {
+  foreignKey: 'cart_id',
+  as: 'cartProducts'
+});
+db.CartProduct.belongsTo(db.Cart, {
+  foreignKey: 'cart_id',
+  as: 'cart'
+});
+
+
+db.Products.hasMany(db.CartProduct, {
+  foreignKey: 'product_id',
+  as: 'cartProducts'
+});
+db.CartProduct.belongsTo(db.Products, {
+  foreignKey: 'product_id',
+  as: 'products'
+});
+
+
+
+
+
+
+
+
+
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -26,7 +26,7 @@
                     <h3 class="form-subtitle">Completa tu informacion personal</h3>
 
                     <form class="form" id="form" action="/storeUser" method="POST"
-                        enctype="multipart/form-data">
+                        enctype="multipart/form-data" novalidate>
                         <div class="inputs">
 
                             <div class="form-group">
@@ -34,7 +34,7 @@
                                     Email:
                                 </label>
                                 <input type="email" id="email" name="email" value="<%= oldData?.email || '' %>" placeholder="Ingresá tu email">
-                                <span class="validate" id="email-message"></span>
+                                <span class="validate" id="email-message"><%= errors.email?.msg %></span>
                             </div>
 
                             <div class="form-group">
@@ -43,7 +43,7 @@
                                 </label>
                                 <input type="password" id="password" name="password"
                                     placeholder="Ingresá una contraseña">
-                                    <span class="validate" id="passwordMessage"></span>
+                                    <span class="validate" id="passwordMessage"><%= errors.password?.msg %></span>
                             </div>
                             <div class="form-group">
                                 <label for="password">
@@ -51,7 +51,7 @@
                                 </label>
                                 <input type="password" id="repeatPassword" name="repeatPassword"
                                     placeholder="Repetí la contraseña">
-                                <span class="validate" id="repeatMessage"></span>
+                                <span class="validate" id="repeatMessage"><%= errors.repeatPassword?.msg %></span>
                             </div>
 
                             <div class="form-group">
@@ -59,19 +59,19 @@
                                     Nombre:
                                 </label>
                                 <input type="text" id="name" name="name" value="<%= oldData?.name || '' %>" placeholder="Ingresa tu nombre">
-                                <span class="validate" id="name-message"></span>
+                                <span class="validate" id="name-message"><%= errors.name?.msg %></span>
                             </div>
                             <div class="form-group">
                                 <label for="lastName">
                                     Apellido:
                                 </label>
                                 <input type="text" id="lastName" name="lastName" value="<%= oldData?.lastName || '' %>" placeholder="Ingresa tu apellido">
-                                <span class="validate" id="lastName-message"></span>
+                                <span class="validate" id="lastName-message"><%= errors.lastName?.msg %></span>
                             </div>
                             <div class="form-group">
                                 <label for="image">Imagen de perfil:</label>
                                 <input type="file" id="file" name="image" accept="image/*" />
-                                <span class="validate" id="img-message"></span>
+                                <span class="validate" id="img-message"><%= errors.image?.msg %></span>
                             </div>
                         </div>
 
@@ -80,8 +80,8 @@
                 </div>
 
             </main>
-            <script src="/javascripts/formValidation.js"></script>
-            <!-- FOOTER -->
+            <script src="/javascripts/formValidation.js"></script> <!--Comentar esta linea para que express-validator haga las validaciones-->
+            
             <%- include('../partials/footer') %>
 
     </body>

@@ -82,6 +82,7 @@
     flex-direction: column;
     margin: 15px;
     width: 250px;
+    
 
 }
 
@@ -107,8 +108,7 @@
     box-shadow: inset 2px 2px 5px var(--raton);
 }
 
-.message,
-.passwordMessage {
+span.error-message{
     color: red;
     font-size: 12px;
     margin: 5px;
@@ -116,10 +116,7 @@
 
 .check {
     display: flex;
-    
-  
-    
-    
+ 
 }
 
 .check label {

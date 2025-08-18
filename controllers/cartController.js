@@ -12,26 +12,18 @@ let cartController = {
 
         const user_id = req.session.user.id;
         const cart = await db.Cart.findOne({
-            where: {
-                user_id: user_id
-            }
-        });
-        const cart_id = cart.cart_id;
-
-        const cartProducts = await db.CartProduct.findAll({
-            where: {
-                cart_id: cart_id
-            },
-            attributes: ['product_id']
+            where: { user_id: user_id },
+            include: [{
+                model: db.CartProduct,
+                as: 'cartProducts',
+                include: [{
+                    model: db.Products,
+                    as: 'products'
+                }]
+            }]
         });
 
-        const productIds = cartProducts.map(cp => cp.product_id);
-
-        const products = await db.Products.findAll({
-            where: {
-                product_id: productIds
-            }
-        });
+        const products = cart.cartProducts.map(cp => cp.products);
 
 
 
@@ -41,50 +33,86 @@ let cartController = {
                 style: 'cartStyle.css',
                 black: '10% off oferta lanzamiento!!',
                 products: products,
-                
+
             });
     },
     add: async function (req, res) {
-        const product_id = req.params.id;
-        const user_id = req.session.user.id;
-        const cart = await db.Cart.findOne({
-            where: {
-                user_id: user_id
+        try {
+
+            const product_id = req.params.id;
+            const user_id = req.session.user.id;
+            const cart = await db.Cart.findOne({
+                where: {
+                    user_id: user_id
+                }
+            });
+
+            if (!cart) {
+                return res.render('products/notFound', {
+                    black: '10% off oferta lanzamiento!!',
+                    title: 'El admin no puede agregar productos al carrito',
+                    style: 'deleteStyle.css'
+                });
             }
-        });
-        const cart_id = cart.cart_id;
 
-        const cartProduct = {
-            cart_id: cart_id,
-            product_id: product_id
-        }
+            const productExists = await db.CartProduct.findOne({
+                where: {
+                    cart_id: cart.cart_id,
+                    product_id: product_id
+                }
+            });
 
-        await db.CartProduct.create(cartProduct);
+            if (productExists) {
+                
+                    return res.render('products/notFound', {
+                    black: '10% off oferta lanzamiento!!',
+                    title: 'El producto ya se encuentra en el carrito',
+                    style: 'deleteStyle.css'
+                
+                });
+            } else {
 
-        return res.redirect('/')
+                const cartProduct = {
+                    cart_id: cart.cart_id,
+                    product_id: product_id
+                }
+    
+                await db.CartProduct.create(cartProduct);
+            }
+
+
+            return res.redirect('/')
+        } catch (error) {
+            return res.render('products/notFound', {
+                    black: '10% off oferta lanzamiento!!',
+                    title: `Se ha producido un error: ${error}`,
+                    style: 'deleteStyle.css'
+                
+        })}
     },
+
     eliminate: async function (req, res) {
-    try {
-        const user_id = req.session.user.id;
-        const cart = await db.Cart.findOne({
-            where: { user_id: user_id }
-        });
-        
-        await db.CartProduct.destroy({
-            where: {
-                cart_id: cart.cart_id,
-                product_id: req.params.id
-            }
-        });
+        try {
+            const user_id = req.session.user.id;
+            const cart = await db.Cart.findOne({
+                where: { user_id: user_id }
+            });
 
-        // Redirigir al carrito (más simple)
-        return res.redirect('/cart'); // o la ruta correcta de tu carrito
+            await db.CartProduct.destroy({
+                where: {
+                    cart_id: cart.cart_id,
+                    product_id: req.params.id
+                }
+            });
 
-    } catch (error) {
-        console.error('Error:', error);
-        return res.status(500).send('Error interno del servidor');
+            // Redirigir al carrito (más simple)
+            return res.redirect('/cart'); // o la ruta correcta de tu carrito
+
+        } catch (error) {
+            console.error('Error:', error);
+            return res.status(500).send('Error interno del servidor');
+        }
     }
-}
 
 }
 

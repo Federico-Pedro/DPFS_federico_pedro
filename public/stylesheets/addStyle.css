@@ -169,7 +169,11 @@ form button:hover {
     color: rgb(206, 42, 42);
 }
 
-
+span.validate{
+    color: red;
+    font-size: 12px;
+    margin: 5px;
+}
 /* ------Queries------ */
 
 

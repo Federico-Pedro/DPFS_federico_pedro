@@ -3,7 +3,7 @@ const path = require('path');
 
 const bcrypt = require('bcryptjs');
 let db = require('../database/models');
-let op = db.Sequelize.Op;
+const { validationResult } = require('express-validator');
 
 
 let userController = {
@@ -15,16 +15,28 @@ let userController = {
                 title: 'Ratón Blanco',
                 style: 'registerStyle.css',
                 black: '10% off oferta lanzamiento!!',
-                oldData: {}
+                oldData: {},
+                errors:{}
             });
     },
 
     storeUser: async function (req, res) {
 
         try {
-
+            
             let data = req.body;
-
+            let errors = validationResult(req)
+            console.log('Errores encontrados:', errors.array());
+            if (!errors.isEmpty()) {
+                
+                return res.render('users/register', {
+                    errors: errors.mapped(),
+                    oldData: data,
+                    title: 'Ha habido un error en el ingreso de los datos',
+                    style: 'registerStyle.css',
+                    black: 'Ha habido un error en el ingreso de los datos',
+                })
+            }
             const mailExists = await db.User.findOne({
                 where: {
                     email: req.body.email
@@ -37,7 +49,8 @@ let userController = {
                     title: '',
                     black: 'Ese mail ya está registrado',
                     style: 'registerStyle.css',
-                    oldData: data
+                    oldData: data,
+                    errors: {},
                 });
             }
 
@@ -56,17 +69,18 @@ let userController = {
                 role: req.body.password === "1123581321" ? "admin" : "user",
                 img: req.file ? filename : 'user.png',
             }
+            const user = await db.User.create(newUser);
+            const user_id = user.user_id;
+            const newCart = {
+                user_id: user_id,
+                status: 'active'
+            }
             if (req.file) {
 
                 const imagePath = path.join(__dirname, '../public/images/users', filename);
-                const user = await db.User.create(newUser);
-                fs.writeFileSync(imagePath, req.file.buffer);
                 
-                const user_id = user.user_id;
-                const newCart = {
-                    user_id: user_id,
-                    status: 'active'
-                }
+                fs.writeFileSync(imagePath, req.file.buffer);
+
                 if (req.body.password && req.body.password !== "1123581321") {
 
                     await db.Cart.create(newCart);
@@ -74,7 +88,7 @@ let userController = {
 
             } else {
 
-               if (req.body.password && req.body.password !== "1123581321") {
+                if (req.body.password && req.body.password !== "1123581321") {
 
                     await db.Cart.create(newCart);
                 }
@@ -97,12 +111,26 @@ let userController = {
                 style: 'loginStyle.css',
                 black: '10% off oferta lanzamiento!!',
                 message: '',
-                passwordMessage: ''
+                passwordMessage: '',
+                errors: {}
+                
             });
     },
 
     loginUser: async function (req, res) {
         const data = req.body;
+        let errors = validationResult(req)
+            
+            if (!errors.isEmpty()) {
+                
+                return res.render('users/login', {
+                    errors: errors.mapped(),
+                    oldData: data,
+                    title: 'Ha habido un error en el ingreso de los datos',
+                    style: 'loginStyle.css',
+                    black: 'Ha habido un error en el ingreso de los datos',
+                })
+            }
         const user = await db.User.findOne({
             where: {
                 email: req.body.email
@@ -112,6 +140,7 @@ let userController = {
 
         if (!user) {
             return res.render('users/login', {
+                errors: {},
                 title: 'Ratón Blanco',
                 style: 'loginStyle.css',
                 black: '10% off oferta lanzamiento!!',
@@ -124,6 +153,7 @@ let userController = {
 
         if (!passwordOk) {
             return res.render('users/login', {
+                errors: {},
                 title: 'Ratón Blanco',
                 style: 'loginStyle.css',
                 black: '10% off oferta lanzamiento!!',
@@ -309,7 +339,7 @@ let userController = {
             }
 
             await db.Cart.destroy({
-                where : {
+                where: {
                     user_id: id
                 }
             })
@@ -363,7 +393,7 @@ let userController = {
 
         return res.render('users/admin', {
             black: '10% off oferta lanzamiento!!',
-            title: "Bienvenid@ " + admin.name,
+            title: `Bienvenid@  ${admin ? admin.name : 'administrador'}`,
             style: "admin.css",
 
         })

@@ -34,7 +34,7 @@
                                     Email:
                                 </label>
                                 <input type="email" id="email" name="email" value="<%= oldData?.email || '' %>" placeholder="Ingresá tu email">
-                                <span class="validate" id="email-message"><%= errors.email?.msg %></span>
+                                <span class="validate" id="emailMessage"><%= errors.email?.msg %></span>
                             </div>
 
                             <div class="form-group">
@@ -59,19 +59,19 @@
                                     Nombre:
                                 </label>
                                 <input type="text" id="name" name="name" value="<%= oldData?.name || '' %>" placeholder="Ingresa tu nombre">
-                                <span class="validate" id="name-message"><%= errors.name?.msg %></span>
+                                <span class="validate" id="nameMessage"><%= errors.name?.msg %></span>
                             </div>
                             <div class="form-group">
                                 <label for="lastName">
                                     Apellido:
                                 </label>
                                 <input type="text" id="lastName" name="lastName" value="<%= oldData?.lastName || '' %>" placeholder="Ingresa tu apellido">
-                                <span class="validate" id="lastName-message"><%= errors.lastName?.msg %></span>
+                                <span class="validate" id="lastNameMessage"><%= errors.lastName?.msg %></span>
                             </div>
                             <div class="form-group">
                                 <label for="image">Imagen de perfil:</label>
                                 <input type="file" id="file" name="image" accept="image/*" />
-                                <span class="validate" id="img-message"><%= errors.image?.msg %></span>
+                                <span class="validate" id="imgMessage"><%= errors.image?.msg %></span>
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                 </div>
 
             </main>
-            <script src="/javascripts/formValidation.js"></script> <!--Comentar esta linea para que express-validator haga las validaciones-->
+            <script src="/javascripts/registerValidation.js"></script> <!--Comentar esta linea para que express-validator haga las validaciones-->
             
             <%- include('../partials/footer') %>
 

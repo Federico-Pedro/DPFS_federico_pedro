@@ -1,7 +1,13 @@
 
 let mainController = {
+
+    //Carga la vista principal
     index: function (req, res) {
-        return res.render('index', { title: 'Ratón Blanco', style: 'styles.css', black: '10% off oferta lanzamiento!!'});
+        return res.render('index', { 
+            title: 'Ratón Blanco', 
+            style: 'styles.css', 
+            black: '10% off oferta lanzamiento!!'
+        });
     },
     
 }

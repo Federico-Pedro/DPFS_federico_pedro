@@ -7,6 +7,8 @@ let db = require('../database/models');
 
 
 let productsController = {
+
+    //Muestra todos los productos según la categoria
     products: async function (req, res) {
         const products = await db.Products.findAll({
             where: {
@@ -28,6 +30,7 @@ let productsController = {
             });
     },
 
+    //Lista todos los productos (función solo disponible para el admin)
     list: async function (req, res) {
         const products = await db.Products.findAll();
 
@@ -45,29 +48,36 @@ let productsController = {
             });
     },
 
+    //Muestra el detalle del producto seleccionado
     detail: async function (req, res) {
-        const user = req.session.user;
-        const id = req.params.id;
-        const product = await db.Products.findByPk(id);
+        try {
 
-        if (product) {
+            const user = req.session.user;
+            const id = req.params.id;
+            const product = await db.Products.findByPk(id);
 
-            return res.render('products/detail',
-                {
-                    black: '10% off oferta lanzamiento!!',
-                    title: 'Ratón Blanco',
-                    product: product,
-                    style: 'detailStyle.css',
-                    userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
-                    user: user
+            if (product) {
 
-                });
-        } else {
-            return res.redirect('/notFound')
+                return res.render('products/detail',
+                    {
+                        black: '10% off oferta lanzamiento!!',
+                        title: 'Ratón Blanco',
+                        product: product,
+                        style: 'detailStyle.css',
+                        userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
+                        user: user
+
+                    });
+            } else {
+                return res.redirect('/notFound')
+            }
+        } catch (error) {
+            console.log(error);
+            res.redirect('/error')
         }
     },
 
-
+    //Muestra el form para cargar un producto (solo admin)
     create: function (req, res) {
         return res.render('products/addProduct',
             {
@@ -80,29 +90,29 @@ let productsController = {
 
             });
     },
-
+    //Carga el producto a la base de datos y su imagen
     store: async function (req, res) {
         try {
-            
+
             const data = req.body;
             let errors = validationResult(req);
             console.log('Los errores encontrados fueron: ', errors.array());
-            if(!errors.isEmpty()){
+            if (!errors.isEmpty()) {
 
                 return res.render('products/addProduct', {
-                errors: errors.mapped(),
-                black: 'Error al cargar el producto',
-                title: 'Ratón Blanco',
-                style: 'addStyle.css',
-                userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
-                oldData : data
-            })
-        }
+                    errors: errors.mapped(),
+                    black: 'Error al cargar el producto',
+                    title: 'Ratón Blanco',
+                    style: 'addStyle.css',
+                    userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
+                    oldData: data
+                })
+            }
             let filename;
             if (req.file) {
                 filename = 'img-' + Date.now() + path.extname(req.file.originalname);
             }
-            
+
             const newProduct = {
                 name: data.name,
                 description: data.description,
@@ -120,14 +130,14 @@ let productsController = {
 
                 await db.User.create(newProduct);
             }
-            
+
             return res.redirect('/success')
         } catch (error) {
             console.log(error)
         }
     },
 
-
+    //Carga el formulario para editar la información de un producto
     edit: async function (req, res) {
         const id = Number(req.params.id);
         const product = await db.Products.findByPk(id);
@@ -139,7 +149,8 @@ let productsController = {
                     title: 'Ratón Blanco',
                     product: product,
                     style: 'addStyle.css',
-                    userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png"
+                    userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
+                    errors: {}
 
                 });
         } else {
@@ -147,16 +158,29 @@ let productsController = {
         }
     },
 
+    //Guarda la información nueva de un producto
     update: async function (req, res) {
         try {
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.render('products/editProduct',
+                    {
+                        black: '10% off oferta lanzamiento!!',
+                        title: 'Ratón Blanco',
+                        product: product,
+                        style: 'addStyle.css',
+                        userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
+                        errors: errors
 
+                    });
+            };
             const id = Number(req.params.id);
             const data = req.body;
-            console.log(data);
+            //console.log(data);
             let product = await db.Products.findByPk(id);
-            console.log(product);
+            //console.log(product);
             let filename;
-            console.log("EL ARCHIVO NUEVO ES: " + req.file);
+            //console.log("EL ARCHIVO NUEVO ES: " + req.file);
             if (req.file) {
                 const imagePath = path.join(__dirname, '../public/images/products', product.img);
                 filename = 'img-' + Date.now() + path.extname(req.file.originalname);
@@ -171,7 +195,7 @@ let productsController = {
                     console.log('La imagen no existe en la ruta especificada');
                 }
             } else {
-                filename = 'user.png';
+                filename = 'raton.png';
                 console.log('El producto no tiene imagen o es undefined');
 
             };
@@ -192,12 +216,12 @@ let productsController = {
             });
             return res.redirect('/success')
         } catch (error) {
-            console.log('Error: ' + error)
-            return res.redirect('/notFound')
+            console.log(error)
+
         }
     },
 
-
+    //Elimina un producto
     delete: async function (req, res) {
         const id = Number(req.params.id);
         const product = await db.Products.findByPk(id);
@@ -237,6 +261,7 @@ let productsController = {
 
     },
 
+    //Carga un vista con un mensaje de éxito en la eliminacion del producto
     deleted: function (req, res) {
 
         return res.render('products/deleted', {
@@ -248,6 +273,7 @@ let productsController = {
         });
     },
 
+    //Carga una vista de "producto no encontrado"
     notFound: function (req, res) {
 
         return res.render('products/notFound', {
@@ -258,6 +284,7 @@ let productsController = {
         });
     },
 
+    ////Carga una vista de "éxito"
     success: function (req, res) {
 
         return res.render('products/success', {
@@ -269,7 +296,4 @@ let productsController = {
         });
     }
 }
-
-
-
 module.exports = productsController

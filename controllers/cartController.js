@@ -8,6 +8,7 @@ let db = require('../database/models');
 
 let cartController = {
 
+    //Carga la vista del carrito de compras
     cart: async function (req, res) {
 
         const user_id = req.session.user.id;
@@ -36,6 +37,8 @@ let cartController = {
 
             });
     },
+
+    //Agrega un producto al carrito de compras
     add: async function (req, res) {
         try {
 
@@ -91,6 +94,7 @@ let cartController = {
         })}
     },
 
+    //Elimina un producto del carrito de compras
     eliminate: async function (req, res) {
         try {
             const user_id = req.session.user.id;

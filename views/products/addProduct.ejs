@@ -22,26 +22,34 @@
                 <div class="form-container">
                     <h3 class="form-subtitle">Ingresa los datos del producto</h3>
 
-                    <form class="form" id="miFormulario" action="/store" method="POST" enctype="multipart/form-data" novalidate>
+                    <form class="form" id="form" action="/store" method="POST" enctype="multipart/form-data"
+                        novalidate>
                         <div class="inputs">
 
                             <div class="form-group">
                                 <label for="name">Nombre del producto:</label>
-                                <input type="text" id="name" name="name" value="<%= oldData?.name || '' %>" placeholder="Ingresá el nombre del producto">
-                                <span class="validate" id="name-message"><%= errors.name?.msg %></span>
+                                <input type="text" id="name" name="name" value="<%= oldData?.name || '' %>"
+                                    placeholder="Ingresá el nombre del producto">
+                                <span class="validate" id="nameMessage">
+                                    <%= errors.name?.msg %>
+                                </span>
                             </div>
 
                             <div class="form-group">
                                 <label for="description">Descripción del producto:</label>
-                                <textarea type="text" id="description" name="description" rows="15" cols="100" 
+                                <textarea type="text" id="description" name="description" rows="15" cols="100"
                                     placeholder="Descripción del producto"><%= oldData?.description || '' %></textarea>
-                                    <span class="validate" id="name-message"><%= errors.description?.msg %></span>
+                                <span class="validate" id="descriptionMessage">
+                                    <%= errors.description?.msg %>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="material">Material del producto:</label>
-                                <textarea type="text" id="description" name="material" rows="15" cols="100" 
+                                <textarea type="text" id="material" name="material" rows="15" cols="100"
                                     placeholder="Material del producto"><%= oldData?.material || '' %></textarea>
-                                    <span class="validate" id="name-message"><%= errors.material?.msg %></span>
+                                <span class="validate" id="materialMessage">
+                                    <%= errors.material?.msg %>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="category">Categoría del producto:</label>
@@ -51,16 +59,24 @@
                                     <option value="ovejas">Ovejas</option>
                                     <option value="animales">Animales</option>
                                 </select>
-                                <span class="validate" id="name-message"><%= errors.category?.msg %></span>
+                                <span class="validate" id="categoryMessage">
+                                    <%= errors.category?.msg %>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="price">Precio del producto:</label>
-                                <input type="number" id="price" name="price" value="<%= oldData?.price || '' %>" placeholder="$" />
-                                <span class="validate" id="name-message"><%= errors.price?.msg %></span>
+                                <input type="number" id="price" name="price" value="<%= oldData?.price || '' %>"
+                                    placeholder="$" />
+                                <span class="validate" id="priceMessage">
+                                    <%= errors.price?.msg %>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="image">Imagen del producto:</label>
-                                <input type="file" id="file" name="image" accept="image/*"/>
+                                <input type="file" id="file" name="image" accept="image/*" />
+                                <span class="validate" id="fileMessage">
+                                    <%= errors.file?.msg %>
+                                </span>
                             </div>
                         </div>
 
@@ -69,7 +85,7 @@
                 </div>
 
             </main>
-
+            <script src="/javascripts/productValidation.js"></script>
             <!-- FOOTER -->
             <%- include('../partials/footer') %>
 

@@ -111,10 +111,10 @@
     margin-top: 5px;
 }
 
-/* span {
+span.validate {
     color: red;
-    font: 2em sans-serif;
-} */
+    font: 12px sans-serif;
+}
 
 #file {
     border: none;

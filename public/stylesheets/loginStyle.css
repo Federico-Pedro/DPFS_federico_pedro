@@ -108,7 +108,7 @@
     box-shadow: inset 2px 2px 5px var(--raton);
 }
 
-span.error-message{
+span.validate{
     color: red;
     font-size: 12px;
     margin: 5px;

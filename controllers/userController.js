@@ -8,7 +8,7 @@ const { validationResult } = require('express-validator');
 
 let userController = {
 
-
+    //Carga el formulario de registro de usuario
     register: function (req, res) {
         return res.render('users/register',
             {
@@ -20,6 +20,7 @@ let userController = {
             });
     },
 
+    //Guarda la información del usuario
     storeUser: async function (req, res) {
 
         try {
@@ -104,6 +105,7 @@ let userController = {
         }
     },
 
+    //Carga el formulario de login
     login: function (req, res) {
         return res.render('users/login',
             {
@@ -117,6 +119,7 @@ let userController = {
             });
     },
 
+    //Ejecuta el login
     loginUser: async function (req, res) {
         const data = req.body;
         let errors = validationResult(req)
@@ -143,7 +146,7 @@ let userController = {
                 errors: {},
                 title: 'Ratón Blanco',
                 style: 'loginStyle.css',
-                black: '10% off oferta lanzamiento!!',
+                black: 'El mail ingresado no se encuentra registrado',
                 message: 'El mail ingresado no se encuentra registrado',
                 passwordMessage: ''
             })
@@ -156,7 +159,7 @@ let userController = {
                 errors: {},
                 title: 'Ratón Blanco',
                 style: 'loginStyle.css',
-                black: '10% off oferta lanzamiento!!',
+                black: 'La contraseña ingresada es incorrecta',
                 message: '',
                 passwordMessage: 'La contraseña ingresada es incorrecta'
 
@@ -177,6 +180,7 @@ let userController = {
         return res.redirect('/profile')
     },
 
+    //Carga la vista del perfil del usuario
     profile: async function (req, res) {
 
         if (!req.session.user && req.cookies.userEmail) {
@@ -216,6 +220,7 @@ let userController = {
         });
     },
 
+    //Carga el formulario de edición de la información del usuario
     editUser: async function (req, res) {
         const id = Number(req.params.id);
         const user = await db.User.findByPk(id);
@@ -227,7 +232,8 @@ let userController = {
                     black: '10% off oferta lanzamiento!!',
                     title: 'Ratón Blanco',
                     user: user,
-                    style: 'addStyle.css'
+                    style: 'addStyle.css',
+                    errors: {}
 
                 });
         } else {
@@ -235,13 +241,29 @@ let userController = {
         }
     },
 
+    //Guarda la información editada
     updateUser: async function (req, res) {
         try {
+            
             const data = req.body;
             const id = req.params.id;
             let user = await db.User.findByPk(id);
             let hashedPassword = user.password;
+            let errors = validationResult(req)
 
+            if(!errors.isEmpty()){
+                console.log('ERRORES: ', errors.mapped() );
+                
+                return res.render('users/editUser',
+                {
+                    black: '10% off oferta lanzamiento!!',
+                    title: 'Ratón Blanco',
+                    user: user,
+                    style: 'addStyle.css',
+                    errors: errors.mapped()
+
+                });
+            }
             if (data.password === '') {
                 hashedPassword = hashedPassword;
             } else if (data.password && data.password.trim() !== "") {
@@ -305,11 +327,7 @@ let userController = {
 
             } catch (error) {
                 console.error('Error al editar usuario:', error);
-                return res.render('products/notFound', {
-                    black: '10% off oferta lanzamiento!!',
-                    title: 'Error al editar usuario',
-                    style: 'deleteStyle.css'
-                });
+                
             }
 
 
@@ -319,6 +337,7 @@ let userController = {
         }
     },
 
+    //Elimina un usuario
     delete: async function (req, res) {
         try {
             const id = req.params.id;
@@ -338,16 +357,29 @@ let userController = {
                 console.log('El usuario no tiene imagen o eliminated.img es undefined');
             }
 
-            await db.Cart.destroy({
-                where: {
-                    user_id: id
-                }
-            })
-            const deleted = await db.User.destroy({
-                where: {
-                    user_id: user.user_id
-                }
+            
+
+            // 2. Eliminar CartProducts primero (si existen)
+        const cart = await db.Cart.findOne({
+            where: { user_id: id }
+        });
+        
+
+        
+            await db.CartProduct.destroy({
+                where: { cart_id: cart.cart_id }
             });
+        
+
+        // 3. Eliminar Carritos del usuario
+        await db.Cart.destroy({
+            where: { user_id: id }
+        });
+
+        // 4. Finalmente eliminar el usuario
+        const deleted = await db.User.destroy({
+            where: { user_id: id }
+        });
 
             if (!deleted) {
                 return res.render('products/notFound', {
@@ -381,7 +413,7 @@ let userController = {
     },
 
 
-
+    //Carga la vista de bienvenida al admin
     admin: async function (req, res) {
 
         const admin = await db.User.findOne({
@@ -399,6 +431,7 @@ let userController = {
         })
     },
 
+    //Cierra sesión
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) {

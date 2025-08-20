@@ -25,7 +25,7 @@
                 <div class="form-container">
                     <h3 class="form-subtitle">Completa tu informacion personal</h3>
 
-                    <form class="form" id="miFormulario" action="/loginUser" method="POST" novalidate>
+                    <form class="form" id="form" action="/loginUser" method="POST" novalidate>
                         <div class="inputs">
 
                             <div class="form-group">
@@ -34,7 +34,7 @@
                                 </label>
                                 <input type="email" id="email" name="email" placeholder="Ingresá tu email">
 
-                                <span class="error-message">
+                                <span class="validate" id="emailMessage">
                                     <%= errors.email?.msg || '' %>
                                 </span>
                             </div>
@@ -46,8 +46,10 @@
                                 <input type="password" id="password" name="password"
                                     placeholder="Ingresá una contraseña">
 
-                                <span class="error-message">
-                                    <%= errors.password?.msg || '' %>
+                                <span class="validate" id="passwordMessage">
+                                    <%= errors.password?.msg || ''  %>
+                                    <%= passwordMessage  %>
+
                                 </span>
 
                             </div>
@@ -66,7 +68,7 @@
                 </div>
 
             </main>
-
+            <script src="/javascripts/loginValidation.js"></script> <!--Comentar esta linea para que express-validator haga las validaciones-->
             <!-- FOOTER -->
             <%- include('../partials/footer') %>
 

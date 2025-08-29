@@ -7,7 +7,8 @@ const repeatMessage = document.getElementById('repeatMessage');
 const firstName = document.getElementById('name');
 const lastName = document.getElementById('lastName');
 const emailMessage = document.getElementById('emailMessage');
-
+const image = document.getElementById('file');
+const imgMessage = document.getElementById('imgMessage');
 const nameMessage = document.getElementById('nameMessage');
 const lastNameMessage = document.getElementById('lastNameMessage');
 let error = false;
@@ -51,6 +52,20 @@ function validateMail() {
 
 email.addEventListener('input', validateMail);
 
+function validateImage(){
+    const file = image.files[0];
+    
+    if(!file.name.match(/\.(jpg|jpeg|png|gif)$/i)){
+        error = true;
+        imgMessage.textContent = 'Solo se permiten imágenes JPG, PNG o GIF(front-end)';
+        imgMessage.style.color = 'red';
+        image.style.borderColor = 'red';
+        console.log('funciona la validacion front-end');
+    }        
+}
+
+image.addEventListener('change', validateImage);
+
 const fields = [
     { input: email, message: emailMessage },
     { input: password, message: passwordMessage },
@@ -71,9 +86,14 @@ form.addEventListener('submit', function (event) {
             error = true
         }
 
-
     });
-    console.log('Error is: ', error)
+
+    validateImage();
+    console.log('Error is: ', error);
+
+    
+    
+
     if (error) {
         event.preventDefault();
         error = false

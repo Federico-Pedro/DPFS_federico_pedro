@@ -16,7 +16,7 @@ let userController = {
                 style: 'registerStyle.css',
                 black: '10% off oferta lanzamiento!!',
                 oldData: {},
-                errors:{}
+                errors: {}
             });
     },
 
@@ -24,12 +24,12 @@ let userController = {
     storeUser: async function (req, res) {
 
         try {
-            
+
             let data = req.body;
             let errors = validationResult(req)
             console.log('Errores encontrados:', errors.array());
             if (!errors.isEmpty()) {
-                
+
                 return res.render('users/register', {
                     errors: errors.mapped(),
                     oldData: data,
@@ -67,7 +67,7 @@ let userController = {
                 password: hashedPassword,
                 name: data.name,
                 lastName: data.lastName,
-                role: req.body.password === "1123581321" ? "admin" : "user",
+                role: "user",
                 img: req.file ? filename : 'user.png',
             }
             const user = await db.User.create(newUser);
@@ -79,20 +79,15 @@ let userController = {
             if (req.file) {
 
                 const imagePath = path.join(__dirname, '../public/images/users', filename);
-                
+
                 fs.writeFileSync(imagePath, req.file.buffer);
+                await db.Cart.create(newCart);
 
-                if (req.body.password && req.body.password !== "1123581321") {
-
-                    await db.Cart.create(newCart);
-                }
 
             } else {
 
-                if (req.body.password && req.body.password !== "1123581321") {
-
-                    await db.Cart.create(newCart);
-                }
+                await db.Cart.create(newCart);
+               
 
             }
 
@@ -115,7 +110,7 @@ let userController = {
                 message: '',
                 passwordMessage: '',
                 errors: {}
-                
+
             });
     },
 
@@ -123,17 +118,18 @@ let userController = {
     loginUser: async function (req, res) {
         const data = req.body;
         let errors = validationResult(req)
-            
-            if (!errors.isEmpty()) {
-                
-                return res.render('users/login', {
-                    errors: errors.mapped(),
-                    oldData: data,
-                    title: 'Ha habido un error en el ingreso de los datos',
-                    style: 'loginStyle.css',
-                    black: 'Ha habido un error en el ingreso de los datos',
-                })
-            }
+
+        if (!errors.isEmpty()) {
+
+            return res.render('users/login', {
+                errors: errors.mapped(),
+                oldData: data,
+                title: 'Ha habido un error en el ingreso de los datos',
+                style: 'loginStyle.css',
+                black: 'Ha habido un error en el ingreso de los datos',
+                passwordMessage: ''
+            })
+        }
         const user = await db.User.findOne({
             where: {
                 email: req.body.email
@@ -244,25 +240,25 @@ let userController = {
     //Guarda la información editada
     updateUser: async function (req, res) {
         try {
-            
+
             const data = req.body;
             const id = req.params.id;
             let user = await db.User.findByPk(id);
             let hashedPassword = user.password;
             let errors = validationResult(req)
 
-            if(!errors.isEmpty()){
-                console.log('ERRORES: ', errors.mapped() );
-                
-                return res.render('users/editUser',
-                {
-                    black: '10% off oferta lanzamiento!!',
-                    title: 'Ratón Blanco',
-                    user: user,
-                    style: 'addStyle.css',
-                    errors: errors.mapped()
+            if (!errors.isEmpty()) {
+                console.log('ERRORES: ', errors.mapped());
 
-                });
+                return res.render('users/editUser',
+                    {
+                        black: '10% off oferta lanzamiento!!',
+                        title: 'Ratón Blanco',
+                        user: user,
+                        style: 'addStyle.css',
+                        errors: errors.mapped()
+
+                    });
             }
             if (data.password === '') {
                 hashedPassword = hashedPassword;
@@ -327,7 +323,7 @@ let userController = {
 
             } catch (error) {
                 console.error('Error al editar usuario:', error);
-                
+
             }
 
 
@@ -343,6 +339,13 @@ let userController = {
             const id = req.params.id;
             const user = await db.User.findByPk(id);
 
+            if (!user) {
+                return res.render('products/notFound', {
+                    black: '10% off oferta lanzamiento!!',
+                    title: 'Usuario no encontrado',
+                    style: 'deleteStyle.css'
+                });
+            }
             if (user.img && user.img !== 'user.png') {
                 const imagePath = path.join(__dirname, '../public/images/users', user.img);
 
@@ -357,29 +360,34 @@ let userController = {
                 console.log('El usuario no tiene imagen o eliminated.img es undefined');
             }
 
-            
 
-            // 2. Eliminar CartProducts primero (si existen)
-        const cart = await db.Cart.findOne({
-            where: { user_id: id }
-        });
-        
 
-        
-            await db.CartProduct.destroy({
-                where: { cart_id: cart.cart_id }
+
+            const cart = await db.Cart.findOne({
+                where: { user_id: id }
             });
-        
 
-        // 3. Eliminar Carritos del usuario
-        await db.Cart.destroy({
-            where: { user_id: id }
-        });
 
-        // 4. Finalmente eliminar el usuario
-        const deleted = await db.User.destroy({
-            where: { user_id: id }
-        });
+            if (cart) {
+
+                await db.CartProduct.destroy({
+                    where: { cart_id: cart.cart_id }
+                });
+
+
+
+                await db.Cart.destroy({
+                    where: { user_id: id }
+                });
+                console.log('Carrito eliminado (creo, jeje)')
+            } else {
+                console.log('El usuario no tenía carrito lo cual es medio raro porque el carrito se crea al crearse e usuario, pero bueno, así es la vida')
+            }
+
+
+            const deleted = await db.User.destroy({
+                where: { user_id: id }
+            });
 
             if (!deleted) {
                 return res.render('products/notFound', {

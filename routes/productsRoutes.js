@@ -38,7 +38,7 @@ router.post('/update/:id', notAdminMiddleware,
     upload.single('image'),
     body('name')
         .notEmpty().withMessage('Ingresa el nombre del producto')
-        .isLength({ min: 8 }).withMessage('El nombre debe tener al menos 8 caracteres'),
+        .isLength({ min: 5 }).withMessage('El nombre debe tener al menos 8 caracteres'),
 
     body('description')
         .notEmpty().withMessage('Ingresa la descripción del producto')

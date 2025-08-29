@@ -127,7 +127,8 @@ let productsController = {
                 await db.Products.create(newProduct);
                 fs.writeFileSync(imagePath, req.file.buffer);
             } else {
-
+                
+                //ACÀ NO HAY ERROR, CREA EL PRODUCTO AUNQUE NO HAYA IMAGEN PORQUE LE PONE UNA IMAGEN GENÉRICA: "raton.png"
                 await db.User.create(newProduct);
             }
 
@@ -161,8 +162,14 @@ let productsController = {
     //Guarda la información nueva de un producto
     update: async function (req, res) {
         try {
+            
+            const id = Number(req.params.id);
+            let product = await db.Products.findByPk(id);
+            
             let errors = validationResult(req);
+            console.log('Errores:', errors)
             if (!errors.isEmpty()) {
+                
                 return res.render('products/editProduct',
                     {
                         black: '10% off oferta lanzamiento!!',
@@ -170,17 +177,15 @@ let productsController = {
                         product: product,
                         style: 'addStyle.css',
                         userLogo: "/images/icons8-usuario-masculino-en-círculo-96.png",
-                        errors: errors
+                        errors: errors.mapped()
 
                     });
             };
-            const id = Number(req.params.id);
+            
             const data = req.body;
-            //console.log(data);
-            let product = await db.Products.findByPk(id);
-            //console.log(product);
+
             let filename;
-            //console.log("EL ARCHIVO NUEVO ES: " + req.file);
+
             if (req.file) {
                 const imagePath = path.join(__dirname, '../public/images/products', product.img);
                 filename = 'img-' + Date.now() + path.extname(req.file.originalname);

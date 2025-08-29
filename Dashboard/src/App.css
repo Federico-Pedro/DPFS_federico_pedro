@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'cyber';
+  src: url('../public/Cyberank.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'techno';
+  src: url('../public/TechnoWanker.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+#root {
+  margin: 10px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+
+.container {
+  width: 95vw;
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: 'cyber';
+  color: #d32ecb;
+  width: 88.6vw;
+  margin: 8px;
+  padding: 10px;
+  padding-top: 15px;
+  border-radius: 10px;
+  border-bottom: 1px solid #04cae4;
+  box-shadow: 2px 5px 10px #0397aa;
+  
+}
+
+.subtitle {
+  color: #dcff16;
+}
+
+.first-line {
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
+  
+}
+
+.quantity-container {
+  box-sizing: border-box;
+  border: 1px solid #04cae4;
+  box-shadow: 2px 5px 10px #0397aa;
+  border-radius: 10px;
+  width: 28.5vw;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  font-size: 12px;
+  padding: 20px;
+  margin: 18px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.quantity {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.last-product {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+}
+
+table {
+  border: 1px solid #04cae4;
+  box-shadow: 2px 5px 10px #0397aa;
+  width: 90vw;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 8px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+td {
+  padding: 10px;
+  border-radius: 10px;
+ 
+}
+
+th {
+  padding: 10px;
+  border-collapse: collapse;
+  border-bottom: 1px solid #04cae4;
+  text-align: start;
+  font-size: 18px;
+}
+
+.td-button{
+  text-align: center;
+}
+.delete-button {
+  background-color: rgb(150, 40, 40);
+  color: #ccc;
+  font-family: 'cyber';
+  font-weight: bold;
+  text-align: center;
+  line-height: 15px;
+  width: 60px;
+  height: 30px;
+  padding: 10px;
+  border: none;
+}
+
+.delete-button:hover{
+  background-color: rgb(192, 51, 51);
+  border: none
+}

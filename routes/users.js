@@ -78,5 +78,6 @@ router.post('/loginUser',
 
 router.get('/logout', userController.logout);
 router.get('/list', productsController.list);
+router.get('/dash', userController.dash)
 
 module.exports = router;

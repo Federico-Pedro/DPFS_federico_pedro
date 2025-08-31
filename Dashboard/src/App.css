@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'techno';
   src: url('../public/TechnoWanker.otf') format('opentype');
@@ -23,9 +24,43 @@
   width: 95vw;
   margin: 0;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+
+  grid-template-areas:
+    "item1 item2 item3"
+    "item4 item4 item4"
+    "item5 item5 item5";
+  
+}
+
+.item1 {
+  grid-area: item1;
+}
+
+.item2 {
+  grid-area: item2;
+}
+
+.item3 {
+  grid-area: item3;
+}
+
+.item4 {
+  grid-area: item4;
+}
+
+.item5 {
+  grid-area: item5;
+}
+
+.item4,
+.item5 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .title {
@@ -38,7 +73,7 @@
   border-radius: 10px;
   border-bottom: 1px solid #04cae4;
   box-shadow: 2px 5px 10px #0397aa;
-  
+
 }
 
 .subtitle {
@@ -48,7 +83,7 @@
 .first-line {
   display: flex;
   font-family: 'Times New Roman', Times, serif;
-  
+
 }
 
 .quantity-container {
@@ -56,20 +91,22 @@
   border: 1px solid #04cae4;
   box-shadow: 2px 5px 10px #0397aa;
   border-radius: 10px;
-  width: 28.5vw;
+  
   display: flex;
   flex-direction: column;
   align-content: flex-start;
   font-size: 12px;
   padding: 20px;
-  margin: 18px;
+  margin: 0;
   font-family: 'Times New Roman', Times, serif;
+  /* border: 1px solid red; */
 }
+
 .quantity {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 .last-product {
@@ -78,21 +115,25 @@
   width: 25vw;
 }
 
+
+
 table {
   border: 1px solid #04cae4;
   box-shadow: 2px 5px 10px #0397aa;
-  width: 90vw;
+  width: 100%;
   border-radius: 10px;
   padding: 10px;
-  margin: 8px;
+  margin: 0;
   font-family: 'Times New Roman', Times, serif;
+  box-sizing: border-box;
+
 }
 
 
 td {
   padding: 10px;
   border-radius: 10px;
- 
+
 }
 
 th {
@@ -103,13 +144,15 @@ th {
   font-size: 18px;
 }
 
-.td-button{
+.td-button {
   text-align: center;
 }
+
 .delete-button {
-  background-color: rgb(150, 40, 40);
+  background-color: rgb(253, 83, 83);
   color: #ccc;
   font-family: 'cyber';
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   line-height: 15px;
@@ -119,7 +162,7 @@ th {
   border: none;
 }
 
-.delete-button:hover{
+.delete-button:hover {
   background-color: rgb(192, 51, 51);
   border: none
 }

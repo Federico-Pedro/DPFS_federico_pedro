@@ -439,6 +439,15 @@ let userController = {
         })
     },
 
+    dash: async function (req, res) {
+        if (req.session.user && req.session.user.role == 'admin') {
+             return res.redirect('http://localhost:5173/')
+        } else {
+            res.redirect('/')
+        }
+
+    },
+
     //Cierra sesión
     logout: (req, res) => {
         req.session.destroy((err) => {

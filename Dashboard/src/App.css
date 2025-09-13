@@ -1,17 +1,31 @@
-@font-face {
-  font-family: 'cyber';
-  src: url('../public/Cyberank.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+:root {
+    --raton: rgb(19, 58, 131);
+    --ratonClaro: rgb(25, 80, 180);
+    --gray: rgb(245, 245, 245);
 }
 
 @font-face {
-  font-family: 'techno';
-  src: url('../public/TechnoWanker.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Amsterdam';
+    src: url('/images/fonts/Amsterdam\ Four_ttf\ 400.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
+@font-face {
+    font-family: 'Railey';
+    src: url('/public/Railey-PersonalUse.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+* {
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: var(--ratonClaro)
+}
 
 #root {
   margin: 10px;
@@ -64,32 +78,34 @@
 }
 
 .title {
-  font-family: 'cyber';
-  color: #d32ecb;
-  width: 88.6vw;
+  font-family:'Railey';
+  color: var(--raton);
+  width: 99%;
   margin: 8px;
   padding: 10px;
   padding-top: 15px;
   border-radius: 10px;
-  border-bottom: 1px solid #04cae4;
-  box-shadow: 2px 5px 10px #0397aa;
+  /* border-bottom: 1px solid var(--ratonClaro); */
+  box-shadow: 2px 5px 10px var(--ratonClaro);
 
 }
 
 .subtitle {
-  color: #dcff16;
+  color: var(--ratonClaro);
+  border-bottom: 1px solid var(--raton); 
+  padding-bottom: 5px;
 }
 
 .first-line {
   display: flex;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Railey', Times, serif;
 
 }
 
 .quantity-container {
   box-sizing: border-box;
-  border: 1px solid #04cae4;
-  box-shadow: 2px 5px 10px #0397aa;
+  /* border: 1px solid var(--raton); */
+  box-shadow: 2px 5px 10px var(--ratonClaro);
   border-radius: 10px;
   
   display: flex;
@@ -98,7 +114,7 @@
   font-size: 12px;
   padding: 20px;
   margin: 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Railey', Times, serif;
   /* border: 1px solid red; */
 }
 
@@ -118,13 +134,13 @@
 
 
 table {
-  border: 1px solid #04cae4;
-  box-shadow: 2px 5px 10px #0397aa;
+  /* border: 1px solid var(--raton); */
+  box-shadow: 2px 5px 10px var(--ratonClaro);
   width: 100%;
   border-radius: 10px;
   padding: 10px;
   margin: 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Railey', Times, serif;
   box-sizing: border-box;
 
 }
@@ -137,9 +153,9 @@ td {
 }
 
 th {
-  padding: 10px;
+  padding: 15px;
   border-collapse: collapse;
-  border-bottom: 1px solid #04cae4;
+  border-bottom: 1px solid var(--ratonClaro);
   text-align: start;
   font-size: 18px;
 }
@@ -149,9 +165,9 @@ th {
 }
 
 .delete-button {
-  background-color: rgb(253, 83, 83);
+  background-color: var(--ratonClaro);
   color: #ccc;
-  font-family: 'cyber';
+  font-family: 'Railey';
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -163,6 +179,6 @@ th {
 }
 
 .delete-button:hover {
-  background-color: rgb(192, 51, 51);
+  background-color: var(--raton);
   border: none
 }

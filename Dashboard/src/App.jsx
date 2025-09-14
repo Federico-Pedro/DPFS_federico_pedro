@@ -27,11 +27,13 @@ function App() {
       const res = await fetch(`${urlBase}/api/products`)
       const data = await res.json()
       const productos = data.data;
-      console.log(productos)
+
+      console.log(data)
       const ultimoProducto = productos[productos.length - 1];
       setUltimoProducto(ultimoProducto)
 
       setProductsData(data)
+      
     } catch (error) {
       console.log('Ha habido un error', error)
     }
@@ -40,10 +42,11 @@ function App() {
   useEffect(() => {
     fetchUsersData();
     fetchProductsData()
+    
   }, [])
 
   async function deleteProduct(productId) {
-    console.log('Intentando eliminar producto con ID:', productId);
+    
     try {
       const res = await fetch(`http://localhost:3000/delete/${productId}`, {
         method: 'POST',
@@ -52,7 +55,7 @@ function App() {
           'Authorization': `Bearer leonardo1452` //este token debe ser luego generado en el loggin por seguridad
         }
       });
-      console.log('Status de respuesta:', res.status);
+      
       if (res.ok) {
         console.log('Usuario eliminado correctamente');
 
@@ -71,8 +74,6 @@ function App() {
       <h1 className="title">Dashboard - Raton Blanco</h1>
       <div className="container">
         
-
-
           <div className="quantity-container item1">
             <h1 className='subtitle'>Estadísticas</h1>
             <div className='quantity'>
@@ -87,15 +88,15 @@ function App() {
           <div className="quantity-container item2">
             <h1 className='subtitle'>Categorías</h1>
             <div className='quantity'>
-              <h2>Cantidad de muñecas:</h2><h2> {productsData.muñecas}</h2>
+              <h2>Cantidad de muñecas:</h2><h2> {productsData?.countByCategory?.muñecas || 0}</h2>
             </div>
 
             <div className='quantity'>
-              <h2>Cantidad de animales: </h2><h2>{productsData.animales}</h2>
+              <h2>Cantidad de animales: </h2><h2>{productsData?.countByCategory?.animales || 0}</h2>
             </div>
 
             <div className='quantity'>
-              <h2>Cantidad de ovejas: </h2><h2>{productsData.ovejas}</h2>
+              <h2>Cantidad de ovejas: </h2><h2>{productsData?.countByCategory?.ovejas || 0}</h2>
             </div>
           </div>
 
@@ -165,7 +166,7 @@ function App() {
             </table>
           
         ) : (
-          <p>Cargando usuarios...</p>
+          <p>Cargando productos...</p>
         )}
       </div>
     </div>

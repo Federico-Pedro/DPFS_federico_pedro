@@ -13,6 +13,8 @@ module.exports = {
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
+
+  //aca intenté subir el proyecto a render.com usando skySQL como database, pero quedé a mitad de camino
   "production": {
     "username": process.env.DB_USER,
     "password": process.env.DB_PASSWORD,

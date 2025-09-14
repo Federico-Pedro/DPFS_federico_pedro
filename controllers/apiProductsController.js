@@ -1,6 +1,8 @@
 const db = require('../database/models');
 
 const apiProductsController = {
+
+    //trae todos los productos de la base de datos
     getAll: async (req, res) => {
 
         const products = await db.Products.findAll();
@@ -33,12 +35,15 @@ const apiProductsController = {
         res.json({
             data: cleanProducts,
             quantity,
-            muñecas: muñecas.length,
-            ovejas: ovejas.length,
-            animales: animales.length
+            countByCategory:{
+                muñecas: muñecas.length,
+                ovejas: ovejas.length,
+                animales: animales.length
+            }
         });
     },
 
+    //trae producto según ID
     getById: async (req, res) => {
         const product = await db.Products.findByPk(req.params.id);
         const cleanProduct = {

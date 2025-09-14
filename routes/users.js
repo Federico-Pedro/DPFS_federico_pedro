@@ -39,7 +39,7 @@ router.get('/editUser/:id', authMiddleware, userController.editUser);
 router.post('/updateUser/:id',
     upload.single('image'),
     body('email').isEmail().withMessage('El formato del email es incorrecto'),
-    // body('password').isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'),
+    //body('password').isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'),
     // body('repeatPassword').custom((value, { req }) => value === req.body.password).withMessage('Las contraseñas no coinciden'),
     body('name').notEmpty().withMessage('El nombre es obligarorio'),
                 //.isLength({ min: 2 }).withMessage('Minimo 2 caracteres'),

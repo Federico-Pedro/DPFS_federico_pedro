@@ -1,6 +1,7 @@
 const db = require('../database/models');
 
 const apiUserController = {
+    //trae todos los usuarios de la base de datos
     getAll: async (req, res) => {
         const users = await db.User.findAll();
         const cleanUsers = users.map(user => ({
@@ -17,6 +18,8 @@ const apiUserController = {
         });
         
     },
+
+    //trae usuario por ID
     getById: async (req, res) => {
         const user = await db.User.findByPk(req.params.id);
         const cleanUser = {
